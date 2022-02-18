@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/api"
+        android:title="切换资源" />
+    <item android:id="@+id/sift"
+        android:title="类型筛选" />
+</menu>
+

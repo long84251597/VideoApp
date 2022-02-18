@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/download_card_header"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:id="@+id/list_container"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:layout_height="35dp">
+
+    <TextView
+        android:id="@+id/video_type"
+        android:layout_width="75sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/quality_shadow"
+        android:backgroundTint="@color/color_1080"
+        android:gravity="center"
+        android:paddingStart="7dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="2dp"
+        android:text=""
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/video_type"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:maxLines="1"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10sp"
+        android:layout_toLeftOf="@+id/icon"
+        android:background="@drawable/quality_shadow"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:text=""
+        android:textSize="12sp"
+        tools:ignore="SmallSp" />
+
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/down" />
+</RelativeLayout>
