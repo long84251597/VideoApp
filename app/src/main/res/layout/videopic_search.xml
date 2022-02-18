@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:id="@+id/main"
+    android:clickable="true"
+    android:background="@drawable/video_item_selector"
+    android:focusableInTouchMode="false"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:background="#848282"
+        android:focusable="false" />
+
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:shadowColor="#ff000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/quality_shadow"
+        android:backgroundTint="@color/color_4k"
+        android:paddingStart="2dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="1dp"
+        android:text=""
+        android:textSize="13sp" />
+    <TextView
+        android:shadowColor="#ff000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:id="@+id/subTitle"
+        android:layout_marginStart="5dp"
+        android:text=""
+        android:textSize="13sp"
+        android:layout_alignBottom="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.kai.video.view.other.ScrollTextView
+        android:focusable="false"
+        android:layout_margin="5dp"
+        android:layout_below="@id/poster"
+        android:text=""
+        android:lines="2"
+        android:gravity="center"
+        android:id="@+id/title"
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_gravity="start"
+        android:layout_height="39sp"/>
+</RelativeLayout>

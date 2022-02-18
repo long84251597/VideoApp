@@ -1,0 +1,9 @@
+<resources>
+
+    <declare-styleable name="HorProBar">
+        <attr name="pro_color_inc" format="color|reference"/>
+        <attr name="pro_color_normal" format="color|reference"/>
+        <attr name="pro_width" format="dimension" />
+        <attr name="pro_height" format="dimension" />
+    </declare-styleable>
+</resources>

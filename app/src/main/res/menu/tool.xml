@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/navi1"
+        android:title="影视导航：影视深林" />
+    <item android:id="@+id/navi2"
+        android:title="影视导航：不求人"/>
+    <item android:id="@+id/search1"
+        android:title="影视搜索：茶杯狐"/>
+    <item android:id="@+id/search2"
+        android:title="影视搜索：电影狗"/>
+    <item android:id="@+id/avtv"
+        android:title="福利院"/>
+</menu>
+

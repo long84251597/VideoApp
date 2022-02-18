@@ -1,0 +1,2 @@
+include ':app', 'library', 'x5Kit', 'sniffwebkit'
+rootProject.name='My Application'

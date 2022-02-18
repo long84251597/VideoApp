@@ -1,0 +1,16 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1D6CC5</color>
+    <color name="color_4k">#FF5722</color>
+    <color name="color_1080">#FFC000</color>
+    <color name="color_720">#03A9F4</color>
+    <color name="color_low">#A7A8A8</color>
+    <color name="low">#CC0000</color>
+    <color name="medium">#FFCC00</color>
+    <color name="high">#00CC00</color>
+    <color name="exo_white">#FFFEFE</color>
+    <color name="dayBackground">#4B4B6C</color>
+    <color name="nightBackground">#050505</color>
+</resources>

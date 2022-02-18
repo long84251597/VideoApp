@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+
+android {
+
+
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
+    signingConfigs {
+        release {
+            storeFile file('/data/home/kai/My Application/key')
+            storePassword 'kai20134548'
+            keyAlias 'key0'
+            keyPassword 'kai20134548'
+        }
+    }
+    defaultConfig {
+        packagingOptions {
+            exclude 'META-INF/beans.xml'
+        }
+        applicationId "com.kai.video"
+        minSdkVersion 21
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0.3 dev1"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+        signingConfig signingConfigs.release
+    }
+    buildTypes {
+        release {
+            shrinkResources false
+            minifyEnabled false
+            zipAlignEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            jniDebuggable = true
+            debuggable = true
+            renderscriptDebuggable = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+    //app-updater
+    implementation 'com.github.jenly1314.AppUpdater:app-updater:1.1.2'
+    //app-dialog
+    implementation 'com.github.jenly1314.AppUpdater:app-dialog:1.1.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.leanback:leanback:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':library')
+    implementation files('libs/fastjson-1.2.78.jar')
+    implementation project(path: ':sniffwebkit')
+    implementation project(path: ':x5Kit')
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //gsyVideoPlayer的导入，使用自己修改的VideoCache实现ProxyCache
+    //仅使用IJK模式
+    implementation ('com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.8-release-jitpack'){
+        exclude group : 'com.github.CarGuo.GSYVideoPlayer', module : 'gsyvideoplayer-androidvideocache'
+    }
+    implementation 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-ex_so:v8.1.8-release-jitpack'
+
+
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    implementation 'org.jsoup:jsoup:1.14.3'
+    //烈焰弹幕使
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.24'
+    implementation 'com.github.ctiao:ndkbitmap-armv5:0.9.24'
+    implementation 'com.github.ctiao:ndkbitmap-x86:0.9.24'
+    //视频下载器，支持M3U8、FLV、MP4等
+    implementation 'com.github.JeffMony:VideoDownloader:5.8.0'
+    implementation 'com.github.JeffMony:JeffM3U8Lib:1.2.0'
+
+    //更加灵活的权限管理框架
+    implementation 'com.github.getActivity:XXPermissions:11.6'
+
+    //金山KSYVideoPlayer，基本框架与android官方MediaPlayer相同
+    //使用效果较差
+    implementation 'com.ksyun.media:libksyplayer-java:2.2.4'
+    implementation 'com.ksyun.media:libksyplayer-armv7a:2.2.4'
+    implementation 'com.ksyun.media:libksyplayer-arm64:2.2.4'
+    //开源的小动画框架
+    implementation 'com.wang.avi:library:2.1.3'
+    //实现侧边栏的两种方式
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+    implementation 'com.winton:bottomnavigationview:1.0.0'
+    //轮播图框架
+    implementation 'com.youth.banner:banner:1.4.10'
+    //x5引擎
+    //图片加载框架
+    implementation 'org.litepal.guolindev:core:3.2.3'
+    //视频缓存框架
+    api 'com.liulishuo.filedownloader:library:1.7.7'
+    api 'com.ksyun.media:libksyhttpcache:1.3.0'
+    implementation ('com.github.jasonhancn:tvcursor:0.9.4', {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    })
+    api 'com.github.Justson.AgentWeb:agentweb-core:v5.0.0-alpha.1-androidx'
+    api 'com.akexorcist:round-corner-progress-bar:2.1.2'
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
+    //api 'com.liulishuo.filedownloader:library:1.7.7'
+
+    implementation 'com.github.Jlanglang:TreeRecyclerView:1.3.1.1'
+}

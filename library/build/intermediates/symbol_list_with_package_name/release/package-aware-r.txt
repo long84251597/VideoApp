@@ -1,0 +1,4 @@
+com.danikula.videocache
+string app_name
+string default_filedownloader_notification_content
+string default_filedownloader_notification_title

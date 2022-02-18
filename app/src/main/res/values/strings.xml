@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">影视凯TV</string>
+    <string name="title_activity_main">影视凯TV</string>
+    <string name="tab_text_1">电视剧</string>
+    <string name="tab_text_2">电影</string>
+    <string name="tab_text_3">动漫</string>
+    <string name="tab_text_4">综艺</string>
+
+    <!-- Error messages -->
+    <string name="_00_00">00:00</string>
+    <string name="todo">TODO</string>
+    <string name="small_window">小窗</string>
+    <string name="next_selection">下一集</string>
+    <string name="download">下载视频</string>
+    <string name="polite">请遵守弹幕文明礼仪</string>
+    <string name="send_danmu">发送</string>
+    <string name="play_or_pause">确认键：播放/暂停</string>
+    <string name="remote_up">方向上键：设置弹幕</string>
+    <string name="remote_down">方向下键：切换线路</string>
+    <string name="remote_menu">菜单键：所有设置</string>
+    <string name="selection">选集</string>
+    <string name="change_api">切换线路</string>
+    <string name="share_video">分享视频</string>
+    <string name="more">更多</string>
+    <string name="baidu">影视狗全网搜索</string>
+    <string name="forbid_video">内核已经默认禁止网页播放，请点击播放按钮进入播放器</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

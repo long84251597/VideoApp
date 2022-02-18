@@ -1,0 +1,77 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="RealtimeBlurView">
+        <attr name="realtimeBlurRadius" format="float" />
+        <attr name="realtimeDownsampleFactor" format="float" />
+        <attr name="realtimeOverlayColor" format="color" />
+        <attr name="realtimeBlurRoundCornerRadius" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="ScrollTextView">
+        <attr name="gravity" format="integer">
+            <flag name="start" value="1"/>
+            <flag name="end" value="2"/>
+            <flag name="left" value="1"/>
+            <flag name="right" value="2"/>
+            <flag name="center" value="0"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="AppTheme">
+        <attr name="app_background" format="reference|color" />
+    </declare-styleable>
+    <declare-styleable name="BatteryView">
+
+        <!-- 电池边方向-->
+        <attr name="bv_orientation">
+            <enum name="horizontal_left" value="0" />
+            <enum name="horizontal_right" value="1" />
+            <enum name="vertical_top" value="2" />
+            <enum name="vertical_bottom" value="3" />
+        </attr>
+
+        <!-- 电池外边框 -->
+        <!-- 电池边框与内部电量的间隔 -->
+        <attr name="bv_border_padding" format="dimension|reference" />
+        <!-- 电池边框宽度 -->
+        <attr name="bv_border_width" format="dimension|reference" />
+        <!-- 电池边框圆角 -->
+        <attr name="bv_radis" format="dimension|reference" />
+        <!-- 电池边框颜色 -->
+        <attr name="bv_border_color" format="color|reference" />
+
+        <!-- 电池实心电量 -->
+        <!-- 电池电量及对应的颜色 -->
+        <attr name="bv_power_color_low" format="color|reference" />
+        <attr name="bv_power_value_low" format="integer" />
+        <attr name="bv_power_color_medium" format="color|reference" />
+        <attr name="bv_power_value_medium" format="integer" />
+        <attr name="bv_power_color_high" format="color|reference" />
+
+
+        <attr name="bv_no_charging_color_high" format="color|reference" />
+        <!-- 电池头的宽度 -->
+        <attr name="bv_header_width" format="dimension|reference" />
+        <attr name="bv_header_color" format="color|reference"/>
+
+        <!-- 充电动画速度 1-9 -->
+        <attr name="bv_charging_speed" format="integer"/>
+    </declare-styleable>
+
+    <attr name="zzbackground" format="color|reference"/>
+    <attr name="zzbackgroundDrawable" format="reference"/>
+    <attr name="zztextColor" format="color"/>
+    <attr name="zzItemBackground" format="color"/>
+    <declare-styleable name="HorProBar">
+        <attr name="pro_color_inc" format="color|reference"/>
+        <attr name="pro_color_normal" format="color|reference"/>
+        <attr name="pro_width" format="dimension" />
+        <attr name="pro_height" format="dimension" />
+    </declare-styleable>
+</resources>

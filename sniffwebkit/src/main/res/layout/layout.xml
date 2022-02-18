@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+            android:id="@+id/bar"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            app:rcAnimationEnable="true"
+            app:rcBackgroundColor="#B5E1DEDE"
+            app:rcBackgroundPadding="4dp"
+            app:rcMax="100"
+            app:rcProgress="40"
+            app:rcProgressColors="@array/sample_progress_gradient"
+            app:rcRadius="30dp"
+            app:rcSecondaryProgress="0"
+            app:rcSecondaryProgressColor="#40EF5350" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_above="@+id/bar"
+            android:layout_alignStart="@+id/bar"
+            android:src="@drawable/wind" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bar"
+            android:layout_toRightOf="@+id/gif"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="嗅探中"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/subTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bar"
+            android:layout_alignEnd="@+id/bar"
+            android:paddingEnd="15dp"
+            android:paddingBottom="5dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

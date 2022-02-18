@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/download_card_shadow"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:clickable="true"
+    android:id="@+id/list_container"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:layout_height="65dp">
+
+    <ProgressBar
+        android:id="@+id/percent"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="7dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="10dp"
+        android:indeterminateTint="@color/colorPrimary"
+        android:progress="29"
+        android:progressDrawable="@drawable/bar_col" />
+
+
+    <TextView
+        android:id="@+id/speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2dp"
+        android:gravity="bottom"
+        android:text="hls"
+        android:textColor="@color/color_4k"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/type"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/type"
+        android:ellipsize="end"
+        android:gravity="bottom"
+        android:maxEms="15"
+        android:maxLines="1"
+        android:paddingStart="10dp"
+        android:singleLine="true"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/percent"
+        android:layout_below="@id/title"
+        android:layout_marginStart="15dp"
+        android:ellipsize="end"
+        android:maxEms="25"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text=""
+        android:textSize="10sp"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/percent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="" />
+</RelativeLayout>

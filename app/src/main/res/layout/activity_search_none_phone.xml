@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SearchActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <RelativeLayout
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:paddingBottom="2dp"
+            android:layout_height="45dp">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/card_shadow"
+                android:completionHint="搜索建议来自爱奇艺"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="10dp"
+                android:hint="输入你想搜索的影片/导演/演员"
+                android:imeOptions="actionSearch"
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageButton
+                android:scaleType="centerInside"
+                android:id="@+id/avtv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/globe" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:id="@+id/video_list"
+                android:layout_above="@id/more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/more"
+                android:layout_marginBottom="5dp"
+                android:visibility="visible"
+                android:background="@drawable/desk_item_selector"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="更多搜索结果"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
