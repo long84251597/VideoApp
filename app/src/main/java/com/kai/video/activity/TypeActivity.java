@@ -35,7 +35,7 @@ public class TypeActivity extends AppCompatActivity {
         initTv();
         recyclerView = (RecyclerView)findViewById(R.id.video_list);
         more = (Button)findViewById(R.id.more);
-        SimpleGridLayoutManager layoutManager = new SimpleGridLayoutManager(this, DeviceManager.isPhone()?4:7);
+        SimpleGridLayoutManager layoutManager = new SimpleGridLayoutManager(this, DeviceManager.getSpanCount(this));
         recyclerView.setLayoutManager(layoutManager);
         adapter = new VideoJtemAdapter(new ArrayList<>());
         adapter.setOnLoading(new VideoJtemAdapter.OnLoading() {

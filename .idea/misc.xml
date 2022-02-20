@@ -10,7 +10,9 @@
         <entry key="app/src/main/res/drawable/download_card_header.xml" value="0.15208333333333332" />
         <entry key="app/src/main/res/drawable/download_card_shadow.xml" value="0.2629695885509839" />
         <entry key="app/src/main/res/drawable/editer_back.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/drawable/logo.xml" value="0.31" />
         <entry key="app/src/main/res/drawable/quality_shadow.xml" value="0.3023255813953488" />
+        <entry key="app/src/main/res/drawable/video_item_selector.xml" value="0.31" />
         <entry key="app/src/main/res/layout/activity_av.xml" value="0.2517513134851138" />
         <entry key="app/src/main/res/layout/activity_download.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_info.xml" value="0.18659420289855072" />
@@ -27,6 +29,7 @@
         <entry key="app/src/main/res/layout/layout_item_download_group.xml" value="0.536" />
         <entry key="app/src/main/res/layout/layout_item_group.xml" value="0.4" />
         <entry key="app/src/main/res/layout/layout_quick_player.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/videopic.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/layout/videopic_banner.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/videopic_none.xml" value="0.11164623467600701" />
         <entry key="app/src/main/res/layout/videopic_search.xml" value="0.4" />

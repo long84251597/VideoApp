@@ -43,6 +43,18 @@ public class DeviceManager {
         return DEVICE;
     }
 
+    public static int getSpanCount(Context context){
+        if (DeviceManager.isTv()){
+            return 7;
+        }else{
+            Configuration configuration = context.getResources().getConfiguration();
+            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                return 7;
+            }else
+                return 4;
+        }
+    }
+
     public static void init(Context context){
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(ContextWrapper.UI_MODE_SERVICE);
         if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {

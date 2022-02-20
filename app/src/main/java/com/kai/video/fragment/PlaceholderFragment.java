@@ -49,9 +49,12 @@ public class PlaceholderFragment extends Fragment {
     private boolean isViewInitFinished = false;
     private boolean dataLoad = false;
     private VerticalTabLayout tabLayout;
-    private final int index;
+    private  int index;
     private VideoItemAdapter adapter;
     private SimpleConductor simpleConductor;
+    public PlaceholderFragment(){
+
+    }
     public PlaceholderFragment(int index){
         super();
         this.index = index;
@@ -127,6 +130,9 @@ public class PlaceholderFragment extends Fragment {
         }
 
     }
+
+
+
     private int position = 0;
     public void getData(){
         dataLoad = true;
@@ -140,9 +146,8 @@ public class PlaceholderFragment extends Fragment {
                         ((Activity)getContext()).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 adapter = new VideoItemAdapter(list, getContext(), index==0);
-                                layoutManager = new FocusGridLayoutManager(getContext(), DeviceManager.isPhone()?4:7, adapter);
+                                layoutManager = new FocusGridLayoutManager(getContext(), DeviceManager.getSpanCount(getContext()), adapter);
                                 layoutManager.setOnReachHeader(position -> new Handler().postDelayed(() -> {
                                     ((MainActivity) getActivity()).clearTabFocus();
                                     layoutManager.findViewByPosition(position).findViewById(R.id.main).requestFocus();

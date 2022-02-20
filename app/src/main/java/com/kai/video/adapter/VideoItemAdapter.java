@@ -233,6 +233,7 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                             .asDrawable()
                             .load(path)
                             .dontAnimate()
+                            .centerInside()
                             .into(imageView);
                 }
             });
@@ -317,7 +318,7 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                     .asDrawable()
                     .load(element.getPoster())
                     .placeholder(R.drawable.loading)
-                    .centerInside()
+                    .fitCenter()
                     .dontAnimate()
                     .into(holder.posterView);
             holder.videoTitle.setText(element.getName());

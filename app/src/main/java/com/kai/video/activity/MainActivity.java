@@ -251,7 +251,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             permissions = new String[]{
                     Permission.WRITE_EXTERNAL_STORAGE
             };
-        XXPermissions.setCheckMode(true);
         boolean hasPermission = XXPermissions.isGranted(this, permissions);
         if (!hasPermission) {
             final String[] ps = permissions;

@@ -31,6 +31,7 @@ import com.danikula.videocache.IPTool;
 import com.kai.video.R;
 import com.kai.video.adapter.AutoCompleteAdapter;
 import com.kai.video.adapter.VideoJtemTAdapter;
+import com.kai.video.manager.DeviceManager;
 import com.kai.video.tool.net.SearchKeyTool;
 import com.kai.video.tool.net.SearchTool;
 import com.kai.video.view.dialog.CustomDialog;
@@ -169,6 +170,18 @@ public class AvActivity extends BaseActivity implements PopupMenu.OnMenuItemClic
         popup.show();
     }
 
+    private int getSpanCount(){
+        if (DeviceManager.isTv()){
+            return 4;
+        }else{
+            Configuration configuration = getResources().getConfiguration();
+            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                return 3;
+            }else
+                return 2;
+        }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,7 +195,8 @@ public class AvActivity extends BaseActivity implements PopupMenu.OnMenuItemClic
         menu.setOnClickListener(view -> showMenu());
         searchTool = SearchTool.getInstance(AvActivity.this, name);
         searchTool.setSpecial(true);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(getSpanCount(), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new VideoJtemTAdapter(new ArrayList<>());
         adapter.setOnLoading(new VideoJtemTAdapter.OnLoading() {

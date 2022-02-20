@@ -41,6 +41,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="MissingTvBanner"
         tools:targetApi="m">
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" />
         <activity
             android:name=".activity.AvActivity"
             android:exported="false" />
@@ -130,6 +133,7 @@
             android:screenOrientation="unspecified"
             android:theme="@style/SplashTheme"
             tools:ignore="LockedOrientationActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

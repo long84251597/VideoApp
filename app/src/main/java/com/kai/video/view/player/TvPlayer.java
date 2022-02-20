@@ -1458,6 +1458,9 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
 
     private void resolveDanmakuShow() {
         post(() -> {
+            if (getDanmakuView() == null){
+                return;
+            }
             if (mDanmaKuShow) {
                 if (!getDanmakuView().isShown())
                     getDanmakuView().show();

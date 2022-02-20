@@ -26,6 +26,7 @@ import com.kai.video.R;
 import com.kai.video.adapter.AutoCompleteAdapter;
 import com.kai.video.adapter.VideoJtemTAdapter;
 import com.kai.video.manager.ActivityCollector;
+import com.kai.video.manager.DeviceManager;
 import com.kai.video.tool.log.LogUtil;
 import com.kai.video.tool.net.SearchKeyTool;
 import com.kai.video.tool.net.SearchTool;
@@ -74,7 +75,7 @@ public class SearchActivity extends BaseActivity implements View.OnFocusChangeLi
         });
         searchTool = SearchTool.getInstance(SearchActivity.this, name);
         searchTool.setSpecial(getIntent().getBooleanExtra("special", false));
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(isScreenOriatationPortrait(SearchActivity.this) ? 4 : 7, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(DeviceManager.getSpanCount(SearchActivity.this), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new VideoJtemTAdapter(new ArrayList<>());
         adapter.setOnLoading(new VideoJtemTAdapter.OnLoading() {
