@@ -407,26 +407,4 @@ public class SniffTool {
         reset();
     }
 
-    private class MyJavaScriptInterface implements JavascriptInterface {
-
-        @Override
-        public boolean equals(Object o) {
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return 0;
-        }
-
-        @Override
-        public String toString() {
-            return null;
-        }
-
-        @Override
-        public Class<? extends Annotation> annotationType() {
-            return null;
-        }
-    }
 }

@@ -175,8 +175,6 @@ public class VideoJtemAdapter extends RecyclerView.Adapter<VideoJtemAdapter.View
                     .asDrawable()
                     .fitCenter()
                     .load(item.getImg()).placeholder(R.drawable.loading)
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerInside()
                     .into(holder.posterView);
             holder.videoTitle.setText(item.getTitle());

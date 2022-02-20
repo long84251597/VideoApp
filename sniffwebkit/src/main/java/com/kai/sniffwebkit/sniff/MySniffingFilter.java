@@ -4,9 +4,9 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 
+import com.kai.sniffwebkit.BuildConfig;
 import com.kai.sniffwebkit.net.HttpReferer;
 import com.kai.sniffwebkit.net.Util;
-import com.permission.kit.BuildConfig;
 
 import org.jsoup.Connection;
 
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class MySniffingFilter {
 
-    public static boolean canLog = true;
+    public static boolean canLog = false;
 
     public static void setCanLog(boolean canLog) {
         MySniffingFilter.canLog = canLog;

@@ -197,8 +197,6 @@ public class AvItemAdapter extends RecyclerView.Adapter<AvItemAdapter.ViewHolder
                     .asDrawable()
                     .fitCenter()
                     .load(item.getPoster()).placeholder(R.drawable.loading)
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     //.centerInside()
                     .into(holder.posterView);
             holder.videoTitle.setText(item.getName());

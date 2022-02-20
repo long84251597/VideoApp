@@ -7,6 +7,8 @@ import com.jeffmony.downloader.VideoDownloadConfig;
 import com.jeffmony.downloader.VideoDownloadManager;
 import com.jeffmony.downloader.common.DownloadConstants;
 import com.kai.sniffwebkit.ad.AdBlocker;
+import com.kai.sniffwebkit.sniff.MySniffingFilter;
+import com.kai.video.BuildConfig;
 import com.kai.video.bean.danmu.DanmuFile;
 import com.kai.video.bean.obj.Api;
 import com.kai.video.manager.DeviceManager;
@@ -28,6 +30,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MySniffingFilter.setCanLog(BuildConfig.DEBUG);
         AdBlocker.init();
         ApplicationDownloadTool.getInstance().init(this);
         DeviceManager.init(this);

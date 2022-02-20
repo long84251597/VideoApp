@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kai.video.R;
 import com.kai.video.activity.InfoActivity;
 import com.kai.video.bean.GlideApp;
@@ -34,8 +33,8 @@ import java.util.List;
 public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.ViewHolder> {
     private OnFinishListener onFinishListener;
     private OnFocusListner onFocusListner;
-    private List<NaviItem> items = new ArrayList<>();
-    private boolean focus = false;
+    private final List<NaviItem> items;
+    private final boolean focus;
 
     public void setOnFinishListener(OnFinishListener onFinishListener) {
         this.onFinishListener = onFinishListener;
@@ -132,7 +131,7 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
         int itemType = getItemViewType(position);
         if (itemType == 1 ){
             if (element == null)
-                return type;
+                return null;
             String url = element.getUrl();
             if (url.contains("v.qq.com"))
                 type = "tencent";
@@ -233,8 +232,6 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                     GlideApp.with(context)
                             .asDrawable()
                             .load(path)
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .dontAnimate()
                             .into(imageView);
                 }
@@ -320,8 +317,6 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                     .asDrawable()
                     .load(element.getPoster())
                     .placeholder(R.drawable.loading)
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerInside()
                     .dontAnimate()
                     .into(holder.posterView);

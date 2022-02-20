@@ -12,3 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/debug/
+/app/release/
+/README.md
+/.idea/

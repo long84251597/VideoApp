@@ -20,8 +20,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 public class MyPlayerManager {
     public static int KERNEL_IJK_SOFT = 0;
     public static int KERNEL_IJK_HARD = 1;
-    public static int KERNEL_KSY_SOFT = 2;
-    public static int KERNEL_KSY_HARD = 3;
     public static int KERNEL_DEFAULT = 0;
 
     public static void setKernelDefault(int kernelDefault) {
@@ -37,7 +35,7 @@ public class MyPlayerManager {
             CacheFactory.setCacheManager(ProxyCacheManager.class);
             List<VideoOptionModel> videoOptionModels = new ArrayList<>();
             PlayerFactory.setPlayManager(IjkPlayerManager.class);
-            IjkPlayerManager.setLogLevel(IjkMediaPlayer.IJK_LOG_UNKNOWN);
+            IjkPlayerManager.setLogLevel(IjkMediaPlayer.IJK_LOG_SILENT);
             if (mode == KERNEL_IJK_HARD){
                 GSYVideoType.setRenderType(GSYVideoType.SUFRACE);
                 //根据设备类型设置是否开启环路过滤
@@ -81,24 +79,6 @@ public class MyPlayerManager {
             GSYVideoManager.instance().setOptionModelList(videoOptionModels);
 
 
-        }else if (mode == KERNEL_KSY_SOFT || mode == KERNEL_KSY_HARD){
-            List<VideoOptionModel> videoOptionModels = new ArrayList<>();
-            CacheFactory.setCacheManager(ProxyCacheManager.class);
-            PlayerFactory.setPlayManager(KsyPlayerManager.class);
-            if (mode == KERNEL_KSY_HARD) {
-                GSYVideoType.setRenderType(GSYVideoType.SUFRACE);
-                GSYVideoType.enableMediaCodecTexture();
-                GSYVideoType.enableMediaCodec();
-                videoOptionModels.add(new VideoOptionModel(KsyPlayerManager.DECODE_MODE, "decode", "auto"));
-            }
-            else {
-                GSYVideoType.disableMediaCodec();
-                GSYVideoType.disableMediaCodecTexture();
-                GSYVideoType.setRenderType(GSYVideoType.TEXTURE);
-                videoOptionModels.add(new VideoOptionModel(KsyPlayerManager.DECODE_MODE, "decode", "software"));
-            }
-
-            GSYVideoManager.instance().setOptionModelList(videoOptionModels);
         }
 
 
@@ -133,7 +113,7 @@ public class MyPlayerManager {
     }
     public static boolean isHardcodec(Context context){
         int current = getCurrentKernel(context);
-        return current == KERNEL_IJK_HARD||current == KERNEL_KSY_HARD;
+        return current == KERNEL_IJK_HARD;
     }
 
 

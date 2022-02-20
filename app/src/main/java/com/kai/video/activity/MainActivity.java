@@ -251,6 +251,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             permissions = new String[]{
                     Permission.WRITE_EXTERNAL_STORAGE
             };
+        XXPermissions.setCheckMode(true);
         boolean hasPermission = XXPermissions.isGranted(this, permissions);
         if (!hasPermission) {
             final String[] ps = permissions;
@@ -259,7 +260,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     .setMessage("为了APP的更好体验，请授予必要权限")
                     .setNegativeButton("以后再说", (dialog12, which) -> dialog12.cancel())
                     .setPositiveButton("立即授予", (dialog1, which) -> {
-                        XXPermissions.setScopedStorage(true);
+
                         XXPermissions.with(MainActivity.this)
                                 .permission(ps)
                                 .request(new OnPermissionCallback() {

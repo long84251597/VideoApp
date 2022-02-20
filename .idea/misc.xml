@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_search_none_phone.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_sniff.xml" value="0.2517513134851138" />
+        <entry key="app/src/main/res/layout/banner.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/dialog_login.xml" value="0.4" />
         <entry key="app/src/main/res/layout/dialog_secret.xml" value="0.4" />
         <entry key="app/src/main/res/layout/fragment_main_download.xml" value="0.176" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/layout/layout_item_download_group.xml" value="0.536" />
         <entry key="app/src/main/res/layout/layout_item_group.xml" value="0.4" />
         <entry key="app/src/main/res/layout/layout_quick_player.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/videopic_banner.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/videopic_none.xml" value="0.11164623467600701" />
         <entry key="app/src/main/res/layout/videopic_search.xml" value="0.4" />
         <entry key="app/src/main/res/menu/av_menu.xml" value="0.32864583333333336" />
