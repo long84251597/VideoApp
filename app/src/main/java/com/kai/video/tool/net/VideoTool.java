@@ -654,6 +654,9 @@ public class VideoTool {
         @Override
         public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             currentFragment = (PlaceholderFragment) object;
+            Bundle bundle = new Bundle();
+            bundle.putInt("index", position);
+            currentFragment.setArguments(bundle);
             super.setPrimaryItem(container, position, object);
         }
 
@@ -666,7 +669,11 @@ public class VideoTool {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position);
+            PlaceholderFragment fragment =  new PlaceholderFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("index", position);
+            fragment.setArguments(bundle);
+            return fragment;
         }
 
         @Nullable

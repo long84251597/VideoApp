@@ -39,6 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme"
         android:usesCleartextTraffic="true"
+
         tools:ignore="MissingTvBanner"
         tools:targetApi="m">
         <meta-data

@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                         .data("versionCode", String.valueOf(BuildConfig.VERSION_CODE))
                         .data("versionName", BuildConfig.VERSION_NAME)
                         .data("action", "check")
-                        .data("tv", DeviceManager.isTv() + "")
+                        .data("tv", "false")
                         .method(Connection.Method.GET)
                         .execute();
                 JSONObject object = JSONObject.parseObject(response.body());

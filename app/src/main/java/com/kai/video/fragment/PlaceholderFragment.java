@@ -53,20 +53,12 @@ public class PlaceholderFragment extends Fragment {
     private VideoItemAdapter adapter;
     private SimpleConductor simpleConductor;
     public PlaceholderFragment(){
-
-    }
-    public PlaceholderFragment(int index){
         super();
-        this.index = index;
-    }
-    public static PlaceholderFragment newInstance(int index) {
-        return new PlaceholderFragment(index);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        simpleConductor = new SimpleConductor(actions[index]);
     }
 
     @Override
@@ -74,6 +66,9 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
+        Bundle bundle = getArguments();
+        index = bundle.getInt("index");
+        simpleConductor = new SimpleConductor(actions[index]);
         recyclerView = root.findViewById(R.id.video_list);
         progressBar = root.findViewById(R.id.progress);
         isViewInitFinished = true;
