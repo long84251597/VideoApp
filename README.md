@@ -23,7 +23,7 @@
 #### 简单界面展示：
 - 手机端界面
 ![_cgi-bin_mmwebwx-bin_webwxgetmsgimg__ MsgID=8170051241113530571 skey=@crypt_c141e89e_fda2eb26c04d6b4ac92a9c2ecd3cb230 mmweb_appid=wx_webfilehelper](https://user-images.githubusercontent.com/51739006/154716250-0effcf89-c649-4a21-9e8f-f486719bbea5.jpeg)
-- 电脑端界面
+- 电视端界面
 ![Screenshot_1645199646](https://user-images.githubusercontent.com/51739006/154716944-807caa57-b4ef-4d98-86ff-f11a5cfdc760.png)
 
 
