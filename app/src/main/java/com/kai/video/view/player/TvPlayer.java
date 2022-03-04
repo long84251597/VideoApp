@@ -37,10 +37,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSONObject;
+import com.danikula.videocache.IPTool;
 import com.danikula.videocache.ProxyCacheUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.jeffmony.downloader.VideoDownloadManager;
-import com.jeffmony.downloader.listener.IDownloadInfosCallback;
 import com.jeffmony.downloader.model.Video;
 import com.jeffmony.downloader.model.VideoTaskItem;
 import com.kai.sniffwebkit.LoadingView;
@@ -65,7 +65,6 @@ import com.kai.video.tool.application.SPUtils;
 import com.kai.video.tool.danmu.MyDanmakuParser;
 import com.kai.video.tool.file.FileUtils;
 import com.kai.video.tool.log.LogUtil;
-import com.danikula.videocache.IPTool;
 import com.kai.video.view.battery.BatteryView;
 import com.kai.video.view.battery.OnBatteryPowerListener;
 import com.kai.video.view.dialog.CustomDialog;
@@ -446,8 +445,6 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
     @Override
     protected void resolveNormalVideoShow(View oldF, ViewGroup vp, GSYVideoPlayer gsyVideoPlayer) {
         //退出全屏播放时更新进度
-        if (!DeviceManager.isTv())
-            getActivity().orientationUtils.backToProtVideo();
         getActivity().updateTime(getCurrentPositionWhenPlaying());
         if (gsyVideoPlayer != null) {
             TvPlayer gsyDanmaVideoPlayer = (TvPlayer) gsyVideoPlayer;

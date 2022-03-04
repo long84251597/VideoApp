@@ -27,7 +27,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0.3 dev2"
+        versionName "1.0.3 dev3"
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
@@ -51,6 +51,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
 
 
 }
@@ -72,6 +75,11 @@ dependencies {
     implementation files('libs/fastjson-1.2.78.jar')
     implementation project(path: ':sniffwebkit')
     implementation project(path: ':x5Kit')
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment:2.4.1'
+    implementation 'androidx.navigation:navigation-ui:2.4.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     //gsyVideoPlayer的导入，使用自己修改的VideoCache实现ProxyCache
@@ -112,6 +120,7 @@ dependencies {
     implementation ('com.github.jasonhancn:tvcursor:0.9.4', {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     })
+
     api 'com.github.Justson.AgentWeb:agentweb-core:v5.0.0-alpha.1-androidx'
     api 'com.akexorcist:round-corner-progress-bar:2.1.2'
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'

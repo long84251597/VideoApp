@@ -14,7 +14,6 @@ import java.util.concurrent.FutureTask;
 public class Api {
     static JSONObject apis = null;
     static int size = 0;
-    public static String referer = "https://jhpc.manduhu.com/?url=";
     public static void loadApis(){
         new Thread(() -> {
             try {

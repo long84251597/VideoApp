@@ -1,8 +1,8 @@
 package com.kai.video.tool.net;
 
 import android.app.Activity;
-import android.util.Log;
 
+import com.alibaba.fastjson.JSONObject;
 import com.danikula.videocache.IPTool;
 
 import org.jsoup.Connection;
@@ -14,17 +14,16 @@ public class LoginTool {
         new Thread(() -> {
             try {
                 Connection.Response response = Jsoup.connect(IPTool.getLocal() + "/login")
-                        .data("action", "login")
+                        .data("action", "getvip")
                         .data("mobile", username)
                         .data("password", password)
-                        .data("tv", "true")
                         .method(Connection.Method.GET)
                         .ignoreContentType(true)
                         .execute();
-                Log.e("result", response.body() + "s");
-                if (response.body().contains("right"))
-                    activity.runOnUiThread(onLogin::success);
-
+                JSONObject resultObj = JSONObject.parseObject(response.body());
+                if (resultObj.getBooleanValue("success")) {
+                    activity.runOnUiThread(() -> onLogin.success(resultObj.getBooleanValue("vip")));
+                }
                 else
                     activity.runOnUiThread(onLogin::fail);
 
@@ -37,7 +36,7 @@ public class LoginTool {
     }
 
     public interface OnLogin{
-        void success();
+        void success(boolean vip);
         void fail();
     }
 }

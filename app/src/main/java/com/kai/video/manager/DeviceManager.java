@@ -1,13 +1,18 @@
 package com.kai.video.manager;
 
+import android.app.Activity;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.kai.video.R;
+import com.kai.video.activity.InfoActivity;
 
 public class DeviceManager {
     public static int DEVICE_TV = 0;
@@ -39,8 +44,27 @@ public class DeviceManager {
         return DEVICE == DEVICE_PHONE;
     }
 
-    public static int getDevice() {
-        return DEVICE;
+    public static void getDevice(Activity activity, OnViewAttachListener onViewAttachListener) {
+        if (DeviceManager.isTv()){
+            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            activity.setContentView(onViewAttachListener.onInitTV());
+            activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                activity.getWindow().setStatusBarColor(activity.getColor(R.color.colorPrimary));
+            }
+            Configuration configuration = activity.getResources().getConfiguration();
+            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                activity.setContentView(onViewAttachListener.onInitPad());
+            }else
+                activity.setContentView(onViewAttachListener.onInitPhone());
+        }
+    }
+
+    public interface OnViewAttachListener{
+        int onInitTV();
+        int onInitPad();
+        int onInitPhone();
     }
 
     public static int getSpanCount(Context context){

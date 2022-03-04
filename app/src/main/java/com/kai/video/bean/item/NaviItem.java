@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NaviItem {
-    private boolean HasHeader = false;
+    private boolean hasHeader = false;
     private String header = "";
     private String name = "";
     private String url = "";
@@ -12,11 +12,11 @@ public class NaviItem {
     private List<CommendItem> extend = new ArrayList<>();
 
     public void setHasHeader(boolean hasHeader) {
-        HasHeader = hasHeader;
+        this.hasHeader = hasHeader;
     }
 
     public boolean isHasHeader() {
-        return HasHeader;
+        return hasHeader;
     }
 
     public void setHeader(String header) {

@@ -23,7 +23,6 @@ import com.danikula.videocache.IPTool;
 import com.jeffmony.downloader.VideoDownloadManager;
 import com.jeffmony.downloader.database.VideoDownloadDatabaseHelper;
 import com.jeffmony.downloader.model.VideoTaskItem;
-import com.jeffmony.downloader.model.VideoTaskState;
 import com.jeffmony.downloader.utils.ContextUtils;
 import com.kai.sniffwebkit.LoadingView;
 import com.kai.sniffwebkit.sniff.MySniffingFilter;
@@ -34,10 +33,10 @@ import com.kai.video.activity.InfoActivity;
 import com.kai.video.bean.obj.Api;
 import com.kai.video.bean.obj.History;
 import com.kai.video.bean.obj.Info;
+import com.kai.video.fragment.PlaceholderFragment;
 import com.kai.video.manager.DeviceManager;
 import com.kai.video.tool.application.GC;
 import com.kai.video.tool.application.SPUtils;
-import com.kai.video.fragment.PlaceholderFragment;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -147,6 +146,10 @@ public class VideoTool {
     }
 
     public void getVideo(String api, int type){
+        if (type > 1 && !SPUtils.get(context).getValue("vip", false)){
+            Toast.makeText(context, "请联系管理员开通超级会员", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (loadingView != null) {
             loadingView.show();
             loadingView.setProgress(0, "获取解析地址");
@@ -215,7 +218,6 @@ public class VideoTool {
     public void destory(){
         //在活动结束时调用，避免内存泄漏
         //消除所有消息反馈及内存占用
-        long id = 0;
         if (historyTask!=null)
             historyTask.cancel(true);
         if(infoTask != null)
@@ -321,7 +323,7 @@ public class VideoTool {
 
     @SuppressLint("StaticFieldLeak")
     public class VideoTask extends AsyncTask{
-        private Iterator<PreSniffingVideo> iterator;
+        private final Iterator<PreSniffingVideo> iterator;
         private Info info;
         private String api;
         private String url = "";

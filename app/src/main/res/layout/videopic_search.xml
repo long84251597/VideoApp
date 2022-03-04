@@ -9,6 +9,7 @@
     android:focusableInTouchMode="false"
     android:focusable="true">
 
+
     <ImageView
         android:id="@+id/poster"
         android:layout_width="match_parent"
@@ -32,22 +33,7 @@
         android:text="" />
 
     <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_above="@+id/title"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/quality_shadow"
-        android:backgroundTint="@color/color_4k"
-        android:paddingStart="2dp"
-        android:paddingTop="1dp"
-        android:paddingEnd="2dp"
-        android:paddingBottom="1dp"
-        android:text=""
-        android:textSize="13sp" />
-    <TextView
         android:shadowColor="#ff000000"
         android:shadowDx="2"
         android:shadowDy="2"
@@ -56,9 +42,26 @@
         android:layout_marginStart="5dp"
         android:text=""
         android:textSize="13sp"
-        android:layout_alignBottom="@+id/score"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/subTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/quality_shadow"
+        android:backgroundTint="@color/color_4k"
+        android:paddingStart="4dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="1dp"
+        android:text=""
+        android:textSize="13sp" />
     <com.kai.video.view.other.ScrollTextView
         android:focusable="false"
         android:layout_margin="5dp"

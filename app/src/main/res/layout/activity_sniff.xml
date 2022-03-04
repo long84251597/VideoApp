@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/tool"
         android:layout_alignParentTop="true"
         android:orientation="horizontal"
@@ -28,7 +29,7 @@
             android:background="@drawable/card_shadow"
             android:hint="@string/baidu"
             android:imeOptions="actionSearch"
-            android:paddingStart="15dp"
+            android:paddingStart="20dp"
             android:singleLine="true"
             tools:ignore="MissingConstraints,RtlSymmetry" />
 

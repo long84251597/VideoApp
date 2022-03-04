@@ -12,27 +12,40 @@
         <entry key="app/src/main/res/drawable/editer_back.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/drawable/logo.xml" value="0.31" />
         <entry key="app/src/main/res/drawable/quality_shadow.xml" value="0.3023255813953488" />
+        <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/video_item_selector.xml" value="0.31" />
         <entry key="app/src/main/res/layout/activity_av.xml" value="0.2517513134851138" />
         <entry key="app/src/main/res/layout/activity_download.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_info.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/activity_info_none_phone.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.13073807380738073" />
+        <entry key="app/src/main/res/layout/activity_main3.xml" value="0.21291866028708134" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_search_none_phone.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_sniff.xml" value="0.2517513134851138" />
+        <entry key="app/src/main/res/layout/activity_sniff_tv.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_type.xml" value="0.11458333333333333" />
+        <entry key="app/src/main/res/layout/activity_type_tv.xml" value="0.11458333333333333" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.11415134672937152" />
         <entry key="app/src/main/res/layout/banner.xml" value="0.1390625" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.13073807380738073" />
         <entry key="app/src/main/res/layout/dialog_login.xml" value="0.4" />
         <entry key="app/src/main/res/layout/dialog_secret.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.11201368106028217" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11201368106028217" />
+        <entry key="app/src/main/res/layout/fragment_item_detail.xml" value="0.13073807380738073" />
         <entry key="app/src/main/res/layout/fragment_main_download.xml" value="0.176" />
         <entry key="app/src/main/res/layout/layout_item_dialog.xml" value="0.11164623467600701" />
         <entry key="app/src/main/res/layout/layout_item_download.xml" value="0.5088408644400786" />
         <entry key="app/src/main/res/layout/layout_item_download_group.xml" value="0.536" />
         <entry key="app/src/main/res/layout/layout_item_group.xml" value="0.4" />
         <entry key="app/src/main/res/layout/layout_quick_player.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.536" />
         <entry key="app/src/main/res/layout/videopic.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/layout/videopic_banner.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/videopic_none.xml" value="0.11164623467600701" />
         <entry key="app/src/main/res/layout/videopic_search.xml" value="0.4" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />
         <entry key="app/src/main/res/menu/av_menu.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/menu/more.xml" value="0.536" />
         <entry key="app/src/main/res/menu/tool.xml" value="0.4" />

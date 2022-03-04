@@ -16,8 +16,9 @@
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:paddingBottom="2dp"
-            android:layout_height="45dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="5dp"
+            android:layout_height="47dp">
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/search_bar"
@@ -39,14 +40,14 @@
                 app:layout_constraintRight_toRightOf="parent" />
 
             <ImageButton
-                android:scaleType="centerInside"
                 android:id="@+id/avtv"
-                android:layout_width="40dp"
+                android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
                 android:background="@color/colorPrimary"
+                android:scaleType="centerInside"
                 android:src="@drawable/globe" />
         </RelativeLayout>
 
@@ -55,14 +56,14 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentTop="true"
                 android:id="@+id/video_list"
-                android:layout_above="@id/more"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_above="@id/more"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
 
             <Button

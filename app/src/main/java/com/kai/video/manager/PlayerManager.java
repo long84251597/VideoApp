@@ -1,12 +1,16 @@
 package com.kai.video.manager;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -136,8 +140,10 @@ public class PlayerManager {
         activity.player.getFullscreenButton().setOnClickListener(v -> {
             //直接横屏
             //初始化不打开外部的旋转
-            if (!DeviceManager.isTv())
-                activity.orientationUtils.resolveByClick();
+            if (!DeviceManager.isTv()) {
+                //activity.orientationUtils.setEnable(true);
+                //activity.orientationUtils.resolveByClick();
+            }
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
             activity.player.startWindowFullscreen(activity, true, true);
         });
@@ -209,6 +215,8 @@ public class PlayerManager {
                 full(true);
                 if (DeviceManager.isTv() && activity.player.getCurrentState() == GSYVideoView.CURRENT_STATE_PAUSE)
                     activity.player.getcurrentPlayer().getStartButton().callOnClick();
+                activity.orientoinListener.enterFullScreen();
+                activity.orientoinListener.enable();
                 super.onEnterFullscreen(url, objects);
 
             }
@@ -221,7 +229,8 @@ public class PlayerManager {
                 activity.layoutManager.scrollToPositionWithOffset(activity.adapter.getCurrent(), 0);
                 if (DeviceManager.isTv())
                     activity.player.onVideoPause();
-                activity.orientationUtils.setEnable(false);
+                activity.orientoinListener.disable();
+                activity.orientoinListener.quitFullScreen();
             }
 
             @Override
@@ -665,7 +674,6 @@ public class PlayerManager {
         }
 
     }
-
 
 
 

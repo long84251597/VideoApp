@@ -49,6 +49,9 @@ public class MySniffingFilter {
             else if (url.endsWith(".mp4") && Util.getContentLength(url) > 1024 * 1024 *2){
                 video = new SniffingVideo(url, "video/mp4", 0, "mp4");
             }
+            else if (url.startsWith("https://gaze.run/gaze_file/gaze/")){
+                video = new SniffingVideo(url, "image/jpeg", 0, "m3u8");
+            }
             //vkey请求的mp4和m3u8（防止vkey失效）及常见的index.m3u8后缀文件
             else if ((url.contains("vkey") && (url.contains(".mp4?") )|| (url.contains(".m3u8?") && url.contains("vkey") && !url.contains("https://ycache.parwix.com:4433/")))){
                 video = new SniffingVideo(url, url.contains("m3u8")?"video/x-mpegurl":"video/mpeg", 0, url.contains("m3u8")?"m3u8":"mp4");

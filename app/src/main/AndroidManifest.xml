@@ -16,7 +16,6 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission
         android:name="android.permission.ACCESS_WIFI_STATE"
@@ -35,16 +34,17 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme"
         android:usesCleartextTraffic="true"
-
         tools:ignore="MissingTvBanner"
-        tools:targetApi="m">
+        tools:targetApi="n">
         <meta-data
             android:name="ScopedStorage"
             android:value="true" />
+
         <activity
             android:name=".activity.AvActivity"
             android:exported="false" />
@@ -134,13 +134,13 @@
             android:screenOrientation="unspecified"
             android:theme="@style/SplashTheme"
             tools:ignore="LockedOrientationActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
