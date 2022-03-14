@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.baozi.treerecyclerview.factory.ItemHelperFactory;
 import com.baozi.treerecyclerview.item.TreeItem;
 import com.baozi.treerecyclerview.item.TreeItemGroup;
 import com.kai.video.R;
+import com.kai.video.bean.GlideApp;
 import com.kai.video.bean.GroupBean;
 
 import java.util.List;
@@ -51,7 +53,28 @@ public class GroupItem extends TreeItemGroup<GroupBean> {
             viewHolder.setImageResource(R.id.icon, R.drawable.up);
         else
             viewHolder.setImageResource(R.id.icon, R.drawable.down);
-        viewHolder.setText(R.id.video_type ,data.getVideoType());
+        viewHolder.setVisible(R.id.video_type, true);
+        if (data.getPoster() != null && !data.getVideoType().equals("外部下载")){
+            GlideApp.with(viewHolder.itemView)
+                    .asDrawable()
+                    .load(data.getPoster())
+                    .placeholder(R.drawable.loading)
+                    .fitCenter()
+                    .dontAnimate()
+                    .into((ImageView) viewHolder.itemView.findViewById(R.id.poster));
+        }
+        switch (data.getVideoType()){
+            case "腾讯视频":viewHolder.setImageResource(R.id.video_type, R.drawable.tencent);break;
+            case "爱奇艺":viewHolder.setImageResource(R.id.video_type, R.drawable.iqiyi);break;
+            case "芒果视频":viewHolder.setImageResource(R.id.video_type, R.drawable.mgtv);break;
+            case "哔哩哔哩": viewHolder.setImageResource(R.id.video_type, R.drawable.bilibili);break;
+            case "外部下载": viewHolder.setImageResource(R.id.video_type, R.drawable.broswer);
+            viewHolder.setImageResource(R.id.poster, R.drawable.broswer_bac);
+            break;
+            default:viewHolder.setVisible(R.id.video_type, false);
+        }
+
+
         viewHolder.setText(R.id.title, data.getVideoName());
         viewHolder.setText(R.id.count, data.getOutPut());
         if (data.isAlive())

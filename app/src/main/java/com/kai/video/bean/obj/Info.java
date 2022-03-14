@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Info {
+    private String coverPic = "";
     private int type = -1;
     public static int TYPE_TV = 0;//电视剧
     public static int TYPE_MOVIE = 1;//电影类
@@ -25,6 +26,14 @@ public class Info {
     private String name = "";
     private String season = "";
     private String current_text = "";
+
+    public String getCoverPic() {
+        return coverPic;
+    }
+
+    public void setCoverPic(String coverPic) {
+        this.coverPic = coverPic;
+    }
 
     public void setZongyi(boolean zongyi) {
         this.zongyi = zongyi;

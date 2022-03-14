@@ -6,7 +6,12 @@
             <corners android:radius="10dp"/>
         </shape>
     </item>
-
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#7D5ABD" />
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
     <item android:state_focused="true" android:state_selected="false">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorPrimaryDark" />

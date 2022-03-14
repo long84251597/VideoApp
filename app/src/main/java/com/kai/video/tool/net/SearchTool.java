@@ -38,16 +38,25 @@ public class SearchTool {
     private String summary = "";
     private List<SearchItem> searchItems = new ArrayList<>();
     private OnFetchListner onFetchListner;
+    private boolean useOffset = false;
+
+    public void setUseOffset(boolean useOffset) {
+        this.useOffset = useOffset;
+    }
 
     public void setOnFetchListner(OnFetchListner onFetchListner) {
         this.onFetchListner = onFetchListner;
     }
 
     public void setApi(String api) {
+        if (api == null)
+            api = "1";
         this.api = api;
     }
 
     public void setType(String type) {
+        if (type == null)
+            type = "";
         this.type = type;
     }
 
@@ -73,6 +82,12 @@ public class SearchTool {
     public String getSummary() {
         return summary;
     }
+
+    public void more(String offset){
+        useOffset = true;
+        this.offset = Integer.parseInt(offset);
+        more();
+    }
     public void more(){
         new Thread(() -> {
             try {
@@ -90,8 +105,10 @@ public class SearchTool {
                 handler.post(() -> {
                     summary = "共搜索到" + searchItems.size() + "部影片";
                     Log.i("tag", "item.size = " + searchItems.size());
-                    onFetchListner.onFetched(offset, searchItems, object.getBoolean("more"));
-                    offset++;
+                    onFetchListner.onFetched(-1, searchItems, object.getBoolean("more"));
+                    //不使用页数就自动加一
+                    if (!useOffset)
+                        offset++;
                 });
 
             }catch (Exception e){
@@ -129,8 +146,9 @@ public class SearchTool {
                     try {
                         summary = "共搜索到" + searchItems.size() + "部影片";
                         Log.i("tag", "item.size = " + searchItems.size());
-                        onFetchListner.onFetched(offset, searchItems, object.getBoolean("more"));
-                        offset++;
+                        onFetchListner.onFetched(object.getIntValue("pageCount"), searchItems, object.getBoolean("more"));
+                        if (!useOffset)
+                            offset++;
                     }catch (Exception e){
                         onFetchListner.onFetchFail();
                     }
@@ -279,7 +297,6 @@ public class SearchTool {
                             urls.add(item.getUrl());
                         }
                         if (names.size() > 0)
-
                             onConnectListner.onConnected(names, urls);
                         else
                             onConnectListner.onDisConnected();

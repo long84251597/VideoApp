@@ -21,11 +21,13 @@
         android:layout_centerVertical="true"
         android:visibility="visible"
         />
+
     <RelativeLayout
         android:id="@+id/tv_bar"
-        android:background="#1D6CC5"
         android:layout_width="100dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#1D6CC5">
+
         <q.rorbin.verticaltablayout.VerticalTabLayout
             android:id="@+id/tablayout"
             android:layout_width="100dp"
@@ -33,48 +35,50 @@
             android:background="#1D6CC5"
             app:indicator_color="#2484F0"
             app:indicator_gravity="fill"
-            app:tab_mode="scrollable"
-            app:tab_height="70dp"
-            />
+            app:tab_height="60dp"
+            app:tab_mode="scrollable" />
 
         <RelativeLayout
-            android:layout_above="@+id/user"
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            android:layout_width="wrap_content"
             android:id="@+id/search_button"
-            android:focusable="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/desk_item_selector"
-            android:layout_marginEnd="5dp"
+            android:layout_above="@+id/user"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/desk_item_selector"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
+
             <TextView
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:text="搜索"
                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:paddingStart="20dp"
-                android:layout_height="40dp"/>
+                android:text="搜索"
+                android:textStyle="bold" />
+
             <ImageView
-                android:layout_marginStart="10dp"
-                android:src="@drawable/search"
-                android:scaleType="centerInside"
                 android:layout_width="20dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/search" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:clickable="true"
-            android:layout_above="@id/hot"
-            android:layout_marginBottom="5dp"
-            android:layout_width="wrap_content"
             android:id="@+id/user"
-            android:focusable="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/desk_item_selector"
-            android:layout_marginEnd="5dp"
+            android:layout_above="@id/hot"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/desk_item_selector"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
 
             <TextView
@@ -85,33 +89,36 @@
                 android:paddingStart="20dp"
                 android:text="我的"
                 android:textStyle="bold" />
+
             <ImageView
-                android:layout_marginStart="10dp"
-                android:src="@drawable/user"
-                android:scaleType="centerInside"
                 android:layout_width="20dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/user" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            android:layout_above="@+id/bottom"
-            android:layout_width="wrap_content"
             android:id="@+id/hot"
-            android:focusable="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/desk_item_selector"
-            android:layout_marginEnd="5dp"
+            android:layout_above="@+id/bottom"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/desk_item_selector"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
+
             <TextView
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:text="分类"
                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:paddingStart="20dp"
-                android:layout_height="40dp"/>
+                android:text="分类"
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -123,15 +130,14 @@
 
         <TextView
             android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="©资源来源网络搜索"
-            android:textSize="10dp"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:text="©资源来源网络搜索"
+            android:textSize="10dp" />
     </RelativeLayout>
-
     <View
         android:background="@android:color/darker_gray"
         android:id="@+id/bar_line"

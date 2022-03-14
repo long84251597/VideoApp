@@ -55,6 +55,7 @@ public class VideoTool {
     private OnGetHistory onGetHistory;
     private Info info;
     private String website = "";
+    private String poster = "";
     //注意只能有唯一的信息获取线程和视频获取线程
     private VideoTask videoTask;
     private String tname = "";
@@ -350,12 +351,7 @@ public class VideoTool {
                     return;
             }if (info.getVideoType_EN().equals("bilibili") && info.getType() == 1 && api.equals("0")){
                 if (context != null)
-                ((Activity)context).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(context, "如果当前片段为试看，请切换线路", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                ((Activity)context).runOnUiThread(() -> Toast.makeText(context, "如果当前片段为试看，请切换线路", Toast.LENGTH_SHORT).show());
 
             }
 
@@ -449,7 +445,6 @@ public class VideoTool {
                 e.printStackTrace();
             }
             return bundle;
-
         }
 
 
@@ -485,12 +480,7 @@ public class VideoTool {
                 JSONObject object = JSONObject.parseObject(body);
                 JSONArray videos = object.getJSONArray("videos");
                 website = object.containsKey("website")?object.getString("website"):"";
-                runUI(new Runnable() {
-                    @Override
-                    public void run() {
-                        sniff(videos);
-                    }
-                });
+                runUI(() -> sniff(videos));
 
 
             }catch (Exception e){
@@ -516,9 +506,7 @@ public class VideoTool {
                         return;
                     }
                     SniffingVideo sniffingVideo = mfilter.onFilter(null, InfoActivity.toUtf8String(bundle.getString("url", "")), HttpReferer.getInstance(info.getUrl(), bundle.getString("url")).getMap());
-                    if (sniffingVideo == null){
-
-                    }else {
+                    if (sniffingVideo != null){
                         sniffingVideo.addHeaders(HttpReferer.getInstance(getInfo().getUrl(), sniffingVideo.getUrl()).getMap());
                         onGetVideo.onGetSuccess(sniffingVideo, currentTime, tname, bundle.getBoolean("localCache"));
                     }
@@ -528,10 +516,7 @@ public class VideoTool {
                     Log.i("tag", "s_fail");
                 }
                 cancel(true);
-            }else if (bundle.containsKey("sniff")){
-                //do nothing but wait for sniff operation ending
             }
-            super.onPostExecute(o);
         }
 
     }
@@ -584,6 +569,7 @@ public class VideoTool {
         //递归获取视频信息
         private Info getInfo(){
             try {
+                Log.e("murl", url);
                 Connection.Response response = Jsoup.connect(IPTool.getLocal() + "/VideoServlet?url=" + url)
                         .ignoreContentType(true)
                         //.data("mobile", SPUtils.get(context).getValue("username", ""))

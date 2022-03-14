@@ -72,8 +72,7 @@ public class PlaceholderFragment extends Fragment {
         recyclerView = root.findViewById(R.id.video_list);
         progressBar = root.findViewById(R.id.progress);
         isViewInitFinished = true;
-        if (!DeviceManager.isTv())
-            root.findViewById(R.id.bar_line).setVisibility(View.GONE);
+
         tabLayout = root.findViewById(R.id.tablayout);
         View searchButton = root.findViewById(R.id.search_button);
         searchButton.setOnClickListener(v -> {
@@ -81,6 +80,7 @@ public class PlaceholderFragment extends Fragment {
             intent.putExtra("wd", "");
             startActivity(intent);
         });
+
         navigationView = root.findViewById(R.id.navigation);
         View userButton = root.findViewById(R.id.user);
         userButton.setOnClickListener(v -> ((MainActivity)getActivity()).showUserSetting());
@@ -89,9 +89,14 @@ public class PlaceholderFragment extends Fragment {
             Intent intent = new Intent(getContext(), TypeActivity.class);
             getContext().startActivity(intent);
         });
-        if(!DeviceManager.isTv()){
+        if (DeviceManager.isPad()) {
+            searchButton.setVisibility(View.INVISIBLE);
+            userButton.setVisibility(View.INVISIBLE);
+            typeButton.setVisibility(View.INVISIBLE);
+        }
+        if(DeviceManager.isPhone()){
             root.findViewById(R.id.tv_bar).setVisibility(View.GONE);
-
+            root.findViewById(R.id.bar_line).setVisibility(View.GONE);
         }else {
             navigationView.setVisibility(View.GONE);
         }
@@ -177,7 +182,7 @@ public class PlaceholderFragment extends Fragment {
                                 recyclerView.setAdapter(adapter);
                                 GridSpacesItemDecoration decorator = new GridSpacesItemDecoration(getActivity(), adapter, actions[index]);
                                 recyclerView.addItemDecoration(decorator);
-                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && !DeviceManager.isTv())
+                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && DeviceManager.isPhone())
                                 recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                                     @Override
                                     public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -219,7 +224,7 @@ public class PlaceholderFragment extends Fragment {
     }
     private NavigationView.OnTabSelectedListener onTabSelectedListener;
     private void initTabs(){
-        if (DeviceManager.isTv()){
+        if (DeviceManager.isTv() || DeviceManager.isPad()){
             tabLayout.setTabAdapter(new TabAdapter() {
                 @Override
                 public int getCount() {
@@ -238,7 +243,7 @@ public class PlaceholderFragment extends Fragment {
                     switch (type){
                         case "tencent": return new ITabView.TabIcon.Builder()
                                 .setIcon(R.drawable.tencent, R.drawable.tencent)
-                                .setIconSize((int)(scale*80+0.5f), (int)(scale*35+0.5f))
+                                .setIconSize((int)(scale*80+0.5f), (int)(scale*30+0.5f))
                                 .build();
                         case "iqiyi": return new ITabView.TabIcon.Builder()
                                 .setIcon(R.drawable.iqiyi, R.drawable.iqiyi)
@@ -254,6 +259,11 @@ public class PlaceholderFragment extends Fragment {
                                 .setIcon(R.drawable.bilibili, R.drawable.bilibili)
                                 .setIconSize((int)(scale*80+0.5f), (int)(scale*30+0.5f))
                                 .build();
+                        case "youku":
+                            return new ITabView.TabIcon.Builder()
+                                    .setIcon(R.drawable.youku, R.drawable.youku)
+                                    .setIconSize((int)(scale*80+0.5f), (int)(scale*30+0.5f))
+                                    .build();
 
                     }
                     return null;
@@ -291,7 +301,8 @@ public class PlaceholderFragment extends Fragment {
                     case "iqiyi": tabs.add(new NavigationView.Model.Builder(R.drawable.iqiyi,R.drawable.iqiyi).title("爱奇艺").build());continue;
                     case "mgtv" : tabs.add(new NavigationView.Model.Builder(R.drawable.mgtv,R.drawable.mgtv).title("芒果TV").build());continue;
                     case "bilibili":tabs.add(new NavigationView.Model.Builder(R.drawable.bilibili,R.drawable.bilibili).title("哔哩哔哩").build());continue;
-                    case "bilibili1":tabs.add(new NavigationView.Model.Builder(R.drawable.bilibili,R.drawable.bilibili).title("哔哩哔哩").build());
+                    case "bilibili1":tabs.add(new NavigationView.Model.Builder(R.drawable.bilibili,R.drawable.bilibili).title("哔哩哔哩").build());continue;
+                    case "youku":tabs.add(new NavigationView.Model.Builder(R.drawable.youku,R.drawable.youku).title("优酷视频").build());continue;
                 }
             }
             navigationView.setItems(tabs);

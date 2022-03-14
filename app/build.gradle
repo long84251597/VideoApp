@@ -27,9 +27,9 @@ android {
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0.3 dev3"
+        versionName "1.0.4 dev4"
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+            abiFilters  'armeabi-v7a','arm64-v8a','x86','x86_64'
         }
         signingConfig signingConfigs.release
     }
@@ -37,7 +37,7 @@ android {
         release {
             shrinkResources false
             minifyEnabled false
-            zipAlignEnabled false
+            zipAlignEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

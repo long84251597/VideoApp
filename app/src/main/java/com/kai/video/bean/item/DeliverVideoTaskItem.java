@@ -14,6 +14,24 @@ public class DeliverVideoTaskItem implements Serializable {
     private String title;
     private String groupName;
     private boolean completed;
+    private String cover = "";
+    private String coverPath = "";
+
+    public void setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
+    }
+
+    public String getCoverPath() {
+        return coverPath;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getCover() {
+        return cover;
+    }
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
@@ -89,6 +107,8 @@ public class DeliverVideoTaskItem implements Serializable {
         deliverVideoTaskItem.setUrl(bean.getUrl());
         deliverVideoTaskItem.setGroupName(bean.getGroupName());
         deliverVideoTaskItem.setCompleted(bean.getPercent() == 1);
+        deliverVideoTaskItem.setCover(bean.getCoverPic());
+        deliverVideoTaskItem.setCoverPath(bean.getCoverPath());
         return deliverVideoTaskItem;
     }
     public static DeliverVideoTaskItem pack(VideoTaskItem item){
@@ -101,6 +121,8 @@ public class DeliverVideoTaskItem implements Serializable {
         deliverVideoTaskItem.setUrl(item.getUrl());
         deliverVideoTaskItem.setGroupName(item.getGroupName());
         deliverVideoTaskItem.setCompleted(item.isCompleted());
+        deliverVideoTaskItem.setCover(item.getCoverUrl());
+        deliverVideoTaskItem.setCoverPath(item.getCoverPath());
         return deliverVideoTaskItem;
     }
     public static VideoTaskItem unpack(DeliverVideoTaskItem deliverVideoTaskItem){
@@ -112,6 +134,8 @@ public class DeliverVideoTaskItem implements Serializable {
         item.setFilePath(deliverVideoTaskItem.getPath());
         item.setGroupName(deliverVideoTaskItem.getGroupName());
         item.setIsCompleted(deliverVideoTaskItem.isCompleted());
+        item.setCoverUrl(deliverVideoTaskItem.getCover());
+        item.setCoverPath(deliverVideoTaskItem.getCoverPath());
         return item;
     }
 }

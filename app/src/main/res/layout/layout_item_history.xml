@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/download_card_shadow"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:clickable="true"
+    android:id="@+id/list_container"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:layout_height="120dp">
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="80sp"
+        android:layout_height="match_parent"
+        android:padding="5sp"
+        android:src="@drawable/loading" />
+
+    <ImageView
+        android:id="@+id/header"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/logo"
+        android:src="@drawable/tencent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/pic"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="不良人第五季" />
+
+    <TextView
+        android:id="@+id/videoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@+id/pic"
+        android:ellipsize="end"
+        android:lines="3"
+        android:text=""
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/videoTitle"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@+id/pic"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="观看到10:10:01"
+        android:textSize="10sp" />
+</RelativeLayout>

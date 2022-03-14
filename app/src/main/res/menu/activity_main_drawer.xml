@@ -21,6 +21,11 @@
             android:icon="@drawable/ic_cache"
             android:title="缓存管理" />
         <item
+            android:id="@+id/nav_browser"
+            android:icon="@drawable/broswer"
+            android:title="网络嗅探" />
+
+        <item
             android:id="@+id/nav_update"
             android:icon="@drawable/ic_update"
             android:title="版本更新" />

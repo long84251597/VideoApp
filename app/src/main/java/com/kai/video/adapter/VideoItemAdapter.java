@@ -233,7 +233,6 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                             .asDrawable()
                             .load(path)
                             .dontAnimate()
-                            .centerInside()
                             .into(imageView);
                 }
             });
@@ -293,6 +292,8 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                     type1 = "bilibili";
                 else if (url.contains("www.mgtv.com"))
                     type1 = "mgtv";
+                else if (url.contains("v.youku.com"))
+                    type1 = "youku";
                 final String t = type1;
                 if (hasFocus){
                     holder.videoTitle.startScroll();
@@ -313,6 +314,8 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
                 GlideApp.with(holder.itemView).load(R.drawable.bilibili).dontAnimate().into(holder.logo);
             else if (url.contains("www.mgtv.com"))
                 GlideApp.with(holder.itemView).load(R.drawable.mgtv).dontAnimate().into(holder.logo);
+            else if (url.contains("v.youku.com"))
+                GlideApp.with(holder.itemView).load(R.drawable.youku).dontAnimate().into(holder.logo);
 
             GlideApp.with(holder.getContext())
                     .asDrawable()

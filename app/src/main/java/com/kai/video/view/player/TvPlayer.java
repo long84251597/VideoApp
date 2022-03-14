@@ -849,6 +849,7 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
                             intent.putExtra("title", downloadTitle);
                             intent.putExtra("url", ProxyCacheManager.instance().getFilePath(mUrl, mContext));
                             intent.putExtra("groupName", downloadGroup);
+                            intent.putExtra("cover", getActivity().videoTool.getInfo().getCoverPic());
                             mContext.startService(intent);
 
 
@@ -857,7 +858,7 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
                             if (!getActivity().videoTool.isDownloading(downloadTitle, downloadGroup, mUrl)){
                                 Toast.makeText(mContext, "视频开始下载", Toast.LENGTH_SHORT).show();
                                 getActivity().videoTool.deleteVideo(downloadTitle, downloadGroup);
-                                VideoTaskItem item1 = new VideoTaskItem(mUrl, "", downloadTitle, getActivity().videoTool.getInfo().getOutput() + "|" + getActivity().videoTool.getInfo().getVideoType());
+                                VideoTaskItem item1 = new VideoTaskItem(mUrl, getActivity().videoTool.getInfo().getCoverPic(), downloadTitle, getActivity().videoTool.getInfo().getOutput() + "|" + getActivity().videoTool.getInfo().getVideoType());
                                 if (mUrl.contains("analysis?url=")){
                                     Map<String, String> map = new HashMap<>(1);
                                     map.put("Referer", "download");

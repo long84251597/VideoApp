@@ -149,36 +149,57 @@
                 android:focusable="false"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
-            <LinearLayout
-                android:layout_above="@id/center_veritical"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@id/full"
-                android:layout_marginTop="10dp"
-                android:focusable="false"
+
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_toRightOf="@id/center_horizontal"
                 android:layout_height="0dp"
+                android:layout_above="@id/center_veritical"
+                android:layout_below="@id/full"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@id/center_horizontal"
+                android:background="@drawable/info_card_shadow"
+                android:focusable="false"
                 android:orientation="vertical">
-                <TextView
-                    android:focusable="false"
-                    android:layout_marginStart="20dp"
+
+                <ImageView
+
+                    android:id="@+id/poster"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView
                     android:id="@+id/period"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"/>
-                <TextView
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/poster"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:lines="7"
-                    android:text=""
+                    android:maxLines="1" />
+
+                <TextView
                     android:id="@+id/description"
-                    android:layout_marginStart="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/period"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
+                    android:layout_toEndOf="@+id/poster"
+                    android:ellipsize="end"
+                    android:focusable="false"
+                    android:lines="6"
+                    android:text=""
+                    android:textSize="12dp" />
+            </RelativeLayout>
             <View
                 android:layout_marginTop="5dp"
                 android:id="@+id/center_veritical"

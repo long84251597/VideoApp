@@ -26,6 +26,7 @@ public class GridSpacesItemDecoration extends RecyclerView.ItemDecoration {
         dic.put("mgtv", "芒果TV");
         dic.put("bilibili", "哔哩哔哩");
         dic.put("bilibili1", "哔哩哔哩日漫");
+        dic.put("youku", "优酷视频");
     }
     private static final HashMap<String, String> adic = new HashMap<>();
     static {

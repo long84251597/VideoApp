@@ -17,6 +17,15 @@ public class GroupBean {
     private String groupName;
     private boolean expand = false;
     private boolean alive = false;
+    private String poster;
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
 
     public void setAlive(boolean alive) {
         this.alive = alive;
@@ -48,6 +57,10 @@ public class GroupBean {
         VideoBean videoBean = VideoBean.trans(item);
         videoBean.fetchFileSize();
         videoBeans.add(videoBean);
+        if (item.getCoverPath() != null && new File(item.getCoverPath()).exists()){
+            setPoster(item.getCoverPath());
+        }else
+            setPoster(item.getCoverUrl());
     }
 
     public void setGroupName(String groupName) {
@@ -95,7 +108,12 @@ public class GroupBean {
         VideoBean videoBean = VideoBean.trans(item);
         videoBean.fetchFileSize();
         videoBeans.add(videoBean);
-
+        if (!item.getCoverUrl().isEmpty()){
+            if (item.getCoverPath() != null && new File(item.getCoverPath()).exists()){
+                setPoster(item.getCoverPath());
+            }else
+                setPoster(item.getCoverUrl());
+        }
     }
 
     public void delete(VideoTaskItem item){
@@ -120,10 +138,10 @@ public class GroupBean {
                 videoBeans.set(i, videoBean);
                 return true;
             }
-
         }
         return false;
     }
+
     @TreeDataType(iClass = VideoItem.class)
     public static class VideoBean{
         public String url;
@@ -138,13 +156,36 @@ public class GroupBean {
         public String percentString;
         public String speedString;
         public String fileSize = "";
+        public String coverPic = "";
+        public String coverPath = "";
+
+        public void setCoverPath(String coverPath) {
+            this.coverPath = coverPath;
+        }
+
+        public String getCoverPath() {
+            return coverPath;
+        }
+
+        public void setCoverPic(String coverPic) {
+            this.coverPic = coverPic;
+        }
+
+        public String getCoverPic() {
+            return coverPic;
+        }
 
         public void fetchFileSize() {
-            if (completed){
-                if (isHlsType())
-                    fileSize =  FileUtils.getFileSize(new File(getPath()).getParentFile());
-                else
-                    fileSize = FileUtils.getFileSize(new File(getPath()));
+            try {
+                if (completed){
+                    if (isHlsType())
+                        fileSize =  FileUtils.getFileSize(new File(getPath()).getParentFile());
+                    else
+                        fileSize = FileUtils.getFileSize(new File(getPath()));
+                }
+
+            }catch (Exception e){
+
             }
 
         }
@@ -177,6 +218,8 @@ public class GroupBean {
             bean.setPercentString(item.getPercentString());
             bean.setSpeedString(item.getSpeedString());
             bean.setCompleted(item.isCompleted());
+            bean.setCoverPic(item.getCoverUrl());
+            bean.setCoverPath(item.getCoverPath());
             return bean;
         }
 

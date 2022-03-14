@@ -75,7 +75,7 @@ public class TransService extends IntentService {
        }
     }
 
-    private void createVideoItem(String path, String title, String groupName){
+    private void createVideoItem(String path, String title, String groupName, String cover){
         new Thread(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -88,7 +88,7 @@ public class TransService extends IntentService {
                     if (!dest.exists())
                         dest.createNewFile();
                     VideoDownloadDatabaseHelper mVideoDatabaseHelper = new VideoDownloadDatabaseHelper(ContextUtils.getApplicationContext());
-                    VideoTaskItem item = new VideoTaskItem(dest.getAbsolutePath(), "",  title, groupName);
+                    VideoTaskItem item = new VideoTaskItem(dest.getAbsolutePath(), cover,  title, groupName);
                     item.setDownloadCreateTime(System.currentTimeMillis());
                     item.setDownloadSize(source.length());
                     item.setMimeType("video/mp4");
@@ -121,9 +121,10 @@ public class TransService extends IntentService {
             String originPath = intent.getStringExtra("url");
             String title = intent.getStringExtra("title");
             String groupName = intent.getStringExtra("groupName");
+            String cover = intent.getStringExtra("cover");
             if (originPath == null || title == null)
                 return;
-            createVideoItem(originPath, title, groupName);
+            createVideoItem(originPath, title, groupName, cover);
 
         }
     }

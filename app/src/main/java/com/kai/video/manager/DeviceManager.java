@@ -40,12 +40,21 @@ public class DeviceManager {
     public static boolean isTv() {
         return tv;
     }
+
+    public static boolean isLand(Activity activity){
+        Configuration configuration = activity.getResources().getConfiguration();
+        return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    public static boolean isPad(){
+        return DEVICE == DEVICE_PAD;
+    }
     public static boolean isPhone(){
         return DEVICE == DEVICE_PHONE;
     }
 
     public static void getDevice(Activity activity, OnViewAttachListener onViewAttachListener) {
-        if (DeviceManager.isTv()){
+        if (isTv()){
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             activity.setContentView(onViewAttachListener.onInitTV());
             activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -54,17 +63,31 @@ public class DeviceManager {
                 activity.getWindow().setStatusBarColor(activity.getColor(R.color.colorPrimary));
             }
             Configuration configuration = activity.getResources().getConfiguration();
-            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                activity.setContentView(onViewAttachListener.onInitPad());
-            }else
-                activity.setContentView(onViewAttachListener.onInitPhone());
+            boolean isLand = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
+            if (isPad()){
+                if (isLand){
+                    activity.setContentView(onViewAttachListener.onInitLandPad());
+                }else {
+                    activity.setContentView(onViewAttachListener.onInitPortPad());
+                }
+            }else {
+                if (isLand){
+                    activity.setContentView(onViewAttachListener.onInitLandPhone());
+                }else {
+                    activity.setContentView(onViewAttachListener.onInitPortPhone());
+                }
+            }
         }
     }
 
+
+
     public interface OnViewAttachListener{
         int onInitTV();
-        int onInitPad();
-        int onInitPhone();
+        int onInitLandPad();
+        int onInitPortPad();
+        int onInitLandPhone();
+        int onInitPortPhone();
     }
 
     public static int getSpanCount(Context context){
@@ -87,15 +110,12 @@ public class DeviceManager {
         }
         else {
             DeviceManager.tv = false;
-            TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            int type = telephony.getPhoneType();
-            if (type == TelephonyManager.PHONE_TYPE_NONE) {
+            if ((context.getResources().getConfiguration().screenLayout
+                    & Configuration.SCREENLAYOUT_SIZE_MASK)
+                    >= Configuration.SCREENLAYOUT_SIZE_LARGE){
                 DeviceManager.setDevice(DEVICE_PAD);
-                Log.d("TAG", "is Tablet!");
-            } else {
+            }else{
                 DeviceManager.setDevice(DEVICE_PHONE);
-                Log.d("TAG", "is phone!");
-
             }
         }
     }

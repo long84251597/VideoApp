@@ -70,9 +70,9 @@ public class MyPlayerManager {
             videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "allowed_extensions", "ALL"));
             videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"safe",0));
             videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "dns_cache_clear", 1));
-            //videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 0));
+            videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 0));
             //videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "flush_packets", 1));
-            //videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "fflags", "fastseek"));
+            videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "fflags", "fastseek"));
             //videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "packet-buffering", 1));
             //videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 500 * 1024));
             //videoOptionModels.add(new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5));
@@ -80,8 +80,6 @@ public class MyPlayerManager {
 
 
         }
-
-
         spUtils.putValue("media", mode);
     }
     public static void loadMode(Context context){

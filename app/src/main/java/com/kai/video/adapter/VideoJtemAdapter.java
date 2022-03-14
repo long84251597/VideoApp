@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kai.video.R;
 import com.kai.video.activity.InfoActivity;
 import com.kai.video.activity.SniffActivity;
+import com.kai.video.bean.GlideApp;
 import com.kai.video.tool.net.SearchTool;
 import com.kai.video.view.dialog.CustomDialog;
 import com.kai.video.view.other.ScrollTextView;
@@ -171,7 +172,7 @@ public class VideoJtemAdapter extends RecyclerView.Adapter<VideoJtemAdapter.View
             Log.i("tag", item.getYear());
             if (!item.getYear().isEmpty())
                 holder.year.setText("[" + item.getYear() + "]");
-            Glide.with(holder.getContext())
+            GlideApp.with(holder.getContext())
                     .asDrawable()
                     .fitCenter()
                     .load(item.getImg()).placeholder(R.drawable.loading)

@@ -1,16 +1,12 @@
 package com.kai.video.manager;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -23,25 +19,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kai.sniffwebkit.sniff.SniffingVideo;
-import com.kai.video.activity.InfoActivity;
 import com.kai.video.R;
+import com.kai.video.activity.InfoActivity;
 import com.kai.video.activity.SniffActivity;
 import com.kai.video.adapter.SelectionItemAdapter;
+import com.kai.video.bean.GlideApp;
+import com.kai.video.bean.item.VideoSaver;
 import com.kai.video.bean.obj.Api;
 import com.kai.video.bean.obj.Info;
 import com.kai.video.bean.obj.Quality;
 import com.kai.video.bean.obj.Selection;
-import com.kai.video.bean.item.VideoSaver;
-import com.kai.video.view.other.LinearTopSmoothScroller;
 import com.kai.video.tool.log.LogUtil;
 import com.kai.video.tool.net.VideoTool;
 import com.kai.video.view.dialog.SelectionDialog;
+import com.kai.video.view.other.LinearTopSmoothScroller;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoView;
 
 import org.litepal.LitePal;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -138,12 +134,6 @@ public class PlayerManager {
         activity.player.setShowFullAnimation(false);
         activity.player.setNeedLockFull(true);
         activity.player.getFullscreenButton().setOnClickListener(v -> {
-            //直接横屏
-            //初始化不打开外部的旋转
-            if (!DeviceManager.isTv()) {
-                //activity.orientationUtils.setEnable(true);
-                //activity.orientationUtils.resolveByClick();
-            }
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
             activity.player.startWindowFullscreen(activity, true, true);
         });
@@ -151,34 +141,45 @@ public class PlayerManager {
             @Override
             public void onPrepared(String url, Object... objects) {
                 super.onPrepared(url, objects);
-                List<VideoSaver> savers = LitePal.where("url = ?", activity.getUrl()).order("api").find(VideoSaver.class);
-                VideoSaver saver = null;
-                if (savers.size() > 0)
-                    saver = savers.get(0);
-                if (saver == null)
-                    saver = new VideoSaver();
-                saver.setUrl(activity.getUrl());
-                saver.setApi(activity.spUtils.getValue("api", 0));
-                saver.save();
-                fullHandler.postDelayed(fullRunnable, 1000);
-                LogUtil.d("tag", activity.player.getCurrentPlayer().getCurrentVideoHeight() + "x" + activity.player.getCurrentPlayer().getCurrentVideoWidth());
-                Quality quality = new Quality(activity.player.getCurrentPlayer().getCurrentVideoWidth());
-                activity.player.getcurrentPlayer().setQuality(quality.get());
-                if (quality.getLevel() < 5){
-                    AlertDialog dialog = new AlertDialog.Builder(activity)
-                            .setTitle("视频清晰度低")
-                            .setMessage("当前视频清晰度低，可能会影响观看效果。是否需要切换下一个接口？")
-                            .setPositiveButton("确定", (dialog12, which) -> otherHandler.sendEmptyMessage(MESSAGE_RETRY))
-                            .setNegativeButton("取消", (dialog1, which) -> {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<VideoSaver> savers = LitePal.where("url = ?", activity.getUrl()).order("api").find(VideoSaver.class);
+                        VideoSaver saver = null;
+                        if (savers.size() > 0)
+                            saver = savers.get(0);
+                        if (saver == null)
+                            saver = new VideoSaver();
+                        saver.setUrl(activity.getUrl());
+                        saver.setApi(activity.spUtils.getValue("api", 0));
+                        saver.save();
+                        fullHandler.postDelayed(fullRunnable, 1000);
+                        Quality quality = new Quality(activity.player.getCurrentPlayer().getCurrentVideoWidth());
 
-                            })
-                            .create();
-                    dialog.show();
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(activity.getResources().getColor(R.color.colorPrimary));
-                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(activity.getResources().getColor(R.color.colorPrimary));
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).requestFocus();
+                        fullHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                activity.player.getcurrentPlayer().setQuality(quality.get());
+                                if (quality.getLevel() < 5){
+                                    AlertDialog dialog = new AlertDialog.Builder(activity)
+                                            .setTitle("视频清晰度低")
+                                            .setMessage("当前视频清晰度低，可能会影响观看效果。是否需要切换下一个接口？")
+                                            .setPositiveButton("确定", (dialog12, which) -> otherHandler.sendEmptyMessage(MESSAGE_RETRY))
+                                            .setNegativeButton("取消", (dialog1, which) -> {
 
-                }
+                                            })
+                                            .create();
+                                    dialog.show();
+                                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+                                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+                                    if (DeviceManager.isTv())
+                                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).requestFocus();
+                                }
+                            }
+                        });
+                    }
+                }).start();
+
             }
 
             @Override
@@ -302,33 +303,42 @@ public class PlayerManager {
 
     }
     public void switchVideo(int i){
-        try {
-            Selection selection = activity.videoTool.getInfo().getSelections().get(i);
-            activity.videoTool.getInfo().setUrl(selection.getUrl());
-            activity.videoTool.getInfo().setTitle(selection.getVideoTitle());
-            String c = selection.getTitle();
-            activity.videoTool.getInfo().setCurrent(c);
-            activity.videoTool.getInfo().setCurrentText(c);
-            //如果集数中含有非数字
-            if (activity.videoTool.getInfo().isZongyi()){
-                activity.videoTool.getInfo().setCurrent((i+1) + "");
-                activity.videoTool.getInfo().setPname(c);
-            }else if (activity.videoTool.getInfo().getType() == Info.TYPE_MOVIE){
-                activity.videoTool.getInfo().setCurrent("-1");
-            }else
-            try {
-                Integer.parseInt(c);
-            }catch (Exception e){
-                e.printStackTrace();
-                activity.videoTool.getInfo().setCurrent("-2");
-                activity.videoTool.getInfo().setCurrentText(c.replaceAll("\\s", ""));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Selection selection = activity.videoTool.getInfo().getSelections().get(i);
+                    activity.videoTool.getInfo().setUrl(selection.getUrl());
+                    activity.videoTool.getInfo().setTitle(selection.getVideoTitle());
+                    String c = selection.getTitle();
+                    activity.videoTool.getInfo().setCurrent(c);
+                    activity.videoTool.getInfo().setCurrentText(c);
+                    //如果集数中含有非数字
+                    if (activity.videoTool.getInfo().isZongyi()){
+                        activity.videoTool.getInfo().setCurrent((i+1) + "");
+                        activity.videoTool.getInfo().setPname(c);
+                    }else if (activity.videoTool.getInfo().getType() == Info.TYPE_MOVIE){
+                        activity.videoTool.getInfo().setCurrent("-1");
+                    }else {
+                        try {
+                            Integer.parseInt(c);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            activity.videoTool.getInfo().setCurrent("-2");
+                            activity.videoTool.getInfo().setCurrentText(c.replaceAll("\\s", ""));
+                        }
+                    }
+                    otherHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            getVideoFromResult();
+                        }
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
-            getVideoFromResult();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
+        }).start();
     }
     public void switchVideo(String newUrl){
         new Thread(() -> {
@@ -336,7 +346,9 @@ public class PlayerManager {
                 List<Selection> array1 = activity.adapter.getArrayAll();
                 for(int i = 0; i < array1.size(); i++){
                     Selection object = array1.get(i);
+
                     if (object.getUrl().equals(newUrl)){
+                        Log.e("obj", object.getUrl());
                         final int index = i;
                         activity.videoTool.getInfo().setTitle(object.getVideoTitle());
                         activity.videoTool.getInfo().setUrl(object.getUrl());
@@ -353,13 +365,25 @@ public class PlayerManager {
                         }else
                         try {
                             Integer.parseInt(c);
-
                         }catch (Exception e){
                             e.printStackTrace();
                             activity.videoTool.getInfo().setCurrent("-2");
                             activity.videoTool.getInfo().setCurrentText(c.replaceAll("\\s", ""));
                         }
+                        Log.e("cms", activity.videoTool.getInfo().getVideoType_EN());
+                        if (activity.videoTool.getInfo().getVideoType_EN().startsWith("CMS")){
+                            fullHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    activity.adapter.changeAbsolutely(index);
+                                    LinearTopSmoothScroller smoothScroller = new LinearTopSmoothScroller(activity);
+                                    smoothScroller.setTargetPosition(index);
+                                    activity.layoutManager.startSmoothScroll(smoothScroller);
+                                    getVideoFromResult();
+                                }
+                            });
 
+                        }
                         fullHandler.postDelayed(() -> activity.groupAdapter.changeGroup(index, (group, header, tailer) -> {
                             activity.groupAdapter.setCurrent(group);
                             if (group > 0) {
@@ -436,8 +460,9 @@ public class PlayerManager {
                     adapter.changeAbsolutely(index);
                     switchVideo(index);
                     Toast.makeText(activity, "播放下一集", Toast.LENGTH_SHORT).show();
+                    activity.videoTool.getHistoryManager().updateTime(activity.videoTool.getInfo().getUrl(), 0);
                 });
-                activity.videoTool.getHistoryManager().updateTime(activity.videoTool.getInfo().getUrl(), 0);
+
 
 
             }catch (Exception e){
@@ -457,7 +482,6 @@ public class PlayerManager {
         }
     }
     public void initVideoTool(){
-
         activity.nextButton.setOnClickListener(v -> {
             otherHandler.removeCallbacksAndMessages(null);
 
@@ -486,13 +510,7 @@ public class PlayerManager {
                         activity.direct = false;
                     }else {
                         url = history.getString("url");
-                        String c =history.getString("current");
-                        if (c.equals("第-1集"))
-                            return;
-                        else if (c.equals("第-2集")){
-                            return;
-                        }
-
+                        Log.e("hurl", url);
                     }
                     loadApiWithUrl(url);
                     switchVideo(url);
@@ -569,6 +587,12 @@ public class PlayerManager {
             public void onGetSuccess(Info info) {
                 activity.player.getLoadingView().finish("资源获取成功");
                 try {
+                    GlideApp.with(activity)
+                            .asDrawable()
+                            .fitCenter()
+                            .load(activity.videoTool.getInfo().getCoverPic()).placeholder(R.drawable.loading)
+                            .centerInside()
+                            .into(activity.poster);
                     activity.header.setText(info.getOutput());
                     activity.description.setText(info.getDescription());
                     activity.peroid.setText(info.getPeriod());

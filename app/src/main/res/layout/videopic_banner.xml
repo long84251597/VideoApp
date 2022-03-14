@@ -12,8 +12,9 @@
         app:delay_time="3000"
         app:indicator_drawable_selected="@drawable/banner_indicator"
         app:banner_layout="@layout/banner"
+        app:image_scale_type="center_crop"
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="190dp">
+        android:layout_height="200dp">
     </com.youth.banner.Banner>
 </RelativeLayout>

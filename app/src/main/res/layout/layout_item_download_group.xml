@@ -9,33 +9,41 @@
     android:id="@+id/list_container"
     android:focusable="true"
     android:focusableInTouchMode="false"
-    android:layout_height="35dp">
+    android:layout_height="70dp">
 
-    <TextView
+    <ImageView
+        android:background="@color/color_low"
+        android:id="@+id/poster"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/loading" />
+
+    <ImageView
         android:id="@+id/video_type"
-        android:layout_width="75sp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="15dp"
-        android:background="@drawable/quality_shadow"
-        android:backgroundTint="@color/color_1080"
+        android:layout_width="80dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/logo"
         android:gravity="center"
         android:paddingStart="7dp"
         android:paddingTop="2dp"
         android:paddingEnd="7dp"
         android:paddingBottom="2dp"
-        android:text=""
+        android:src="@drawable/tencent"
+        android:text="腾讯视频"
         tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/video_type"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/poster"
         android:ellipsize="end"
-        android:maxEms="10"
         android:maxLines="1"
         android:text="" />
 
@@ -43,10 +51,10 @@
         android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10sp"
-        android:layout_toLeftOf="@+id/icon"
+        android:layout_below="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginTop="10dp"
         android:background="@drawable/quality_shadow"
         android:paddingStart="7dp"
         android:paddingEnd="7dp"

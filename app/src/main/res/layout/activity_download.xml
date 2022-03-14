@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.DownloadActivity">
     <LinearLayout
-        android:id="@+id/header"
-        android:background="@color/colorPrimary"
+        android:orientation="vertical"
         android:descendantFocusability="afterDescendants"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:paddingBottom="5dp"
-        android:layout_height="40dp">
-        <TextView
-            android:focusable="false"
-            android:paddingLeft="5dp"
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:text="下载管理"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:descendantFocusability="afterDescendants"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:paddingBottom="2dp"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="14dp"
+                android:paddingLeft="5dp"
+                android:lines="1"
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:text="下载管理"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+        </LinearLayout>
     </LinearLayout>
-    <ProgressBar
-        android:id="@+id/progress"
-        android:progressDrawable="@drawable/bar_col"
-        android:indeterminateTint="@color/colorPrimary"
-        android:layout_centerInParent="true"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:descendantFocusability="afterDescendants"
-        android:layout_below="@+id/header"
-        android:paddingTop="5dp"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:id="@+id/video_list"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</RelativeLayout>
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progress"
+            android:progressDrawable="@drawable/bar_col"
+            android:indeterminateTint="@color/colorPrimary"
+            android:layout_centerInParent="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/video_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="afterDescendants"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="5dp" />
+    </RelativeLayout>
+
+</LinearLayout>
