@@ -766,26 +766,20 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
                             startWindowPlayer();
                         }
                         else if (which == 9){
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Jsoup.connect(IPTool.getLocal() + "/VideoServlet")
-                                                .data("name", getActivity().videoTool.getInfo().getName())
-                                                .data("videoType", getActivity().videoTool.getInfo().getVideoType())
-                                                .data("type", getActivity().videoTool.getInfo().getType() +"")
-                                                .method(Connection.Method.POST)
-                                                .execute();
-                                        getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(getActivity(), "请重新进入视频，我们已经标记了更新", Toast.LENGTH_LONG).show();
-                                                getActivity().finish();
-                                            }
-                                        });
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+                            new Thread(() -> {
+                                try {
+                                    Jsoup.connect(IPTool.getLocal() + "/VideoServlet")
+                                            .data("name", getActivity().videoTool.getInfo().getName())
+                                            .data("videoType", getActivity().videoTool.getInfo().getVideoType())
+                                            .data("type", getActivity().videoTool.getInfo().getType() +"")
+                                            .method(Connection.Method.POST)
+                                            .execute();
+                                    getActivity().runOnUiThread(() -> {
+                                        Toast.makeText(getActivity(), "请重新进入视频，我们已经标记了更新", Toast.LENGTH_LONG).show();
+                                        getActivity().finish();
+                                    });
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
                             }).start();
                         }
@@ -1548,7 +1542,7 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
         danmakuOnPause();
         try {
             getActivity().updateTime(getCurrentPositionWhenPlaying());
-        }catch (Exception e){
+        }catch (Exception ignored){
 
         }
 
@@ -1601,7 +1595,7 @@ public class TvPlayer extends NormalGSYVideoPlayer implements PopupMenu.OnMenuIt
             if (mDanmakuView != null && mDanmakuView.isPrepared()) {
                 mDanmakuView.pause();
             }
-        }catch (Exception e){
+        }catch (Exception ignored){
 
         }
 

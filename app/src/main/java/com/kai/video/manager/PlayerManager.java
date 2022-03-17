@@ -133,6 +133,10 @@ public class PlayerManager {
         activity.player.setLockLand(false);
         activity.player.setShowFullAnimation(false);
         activity.player.setNeedLockFull(true);
+        if (DeviceManager.isTv() || DeviceManager.isPad())
+            activity.player.setNeedOrientationUtils(false);
+        else
+            activity.player.setNeedOrientationUtils(true);
         activity.player.getFullscreenButton().setOnClickListener(v -> {
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
             activity.player.startWindowFullscreen(activity, true, true);
@@ -597,7 +601,7 @@ public class PlayerManager {
                     activity.description.setText(info.getDescription());
                     activity.peroid.setText(info.getPeriod());
                     if (info.isZongyi()){
-                        activity.layoutManager = new GridLayoutManager(activity, DeviceManager.isTv()? 7:4);
+                        activity.layoutManager = new GridLayoutManager(activity, DeviceManager.isPhone()? 4:7);
                         activity.recyclerView.setLayoutManager(activity.layoutManager);
                         activity.adapter.setArray(info.getSelections(), null);
                         activity.groupView.setVisibility(View.GONE);

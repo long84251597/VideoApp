@@ -28,6 +28,8 @@ import java.util.regex.Pattern;
 
 public class SearchTool {
     public void setWd(String wd) {
+        if (wd == null)
+            wd = "";
         this.wd = wd;
     }
     private boolean special = false;

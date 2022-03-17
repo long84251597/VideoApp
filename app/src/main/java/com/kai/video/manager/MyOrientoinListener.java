@@ -7,6 +7,7 @@ import android.view.OrientationEventListener;
 public class MyOrientoinListener extends OrientationEventListener {
     private final Activity activity;
     private boolean forceLand = false;
+
     public static MyOrientoinListener getInstance(Activity activity){
         return new  MyOrientoinListener(activity);
     }

@@ -4,212 +4,233 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:id="@+id/content"
     tools:context=".activity.InfoActivity">
-
     <LinearLayout
-        android:orientation="vertical"
-        android:descendantFocusability="afterDescendants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:descendantFocusability="afterDescendants"
+        android:orientation="vertical"
         android:theme="@style/AppTheme.AppBarOverlay">
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:background="@color/colorPrimary"
             android:descendantFocusability="afterDescendants"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:paddingBottom="2dp"
-            android:layout_height="40dp">
+            android:paddingBottom="5dp">
+
             <TextView
-                android:paddingLeft="5dp"
-                android:lines="1"
                 android:id="@+id/title"
                 android:layout_width="0dp"
-                android:layout_weight="4"
                 android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:focusable="false"
                 android:gravity="left|center_vertical"
+                android:lines="1"
+                android:maxEms="7"
+                android:paddingLeft="5dp"
                 android:text="@string/app_name"
-                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:textSize="13dp" />
+
             <RelativeLayout
-                android:clickable="true"
-                android:layout_width="150dp"
                 android:id="@+id/search_button"
-                android:focusable="true"
-                android:layout_height="38dp"
-                android:background="@drawable/desk_item_selector"
-                android:layout_marginEnd="5dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:orientation="horizontal">
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/desk_item_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
-                    android:textColor="@color/exo_white"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:paddingStart="20dp"
                     android:text="搜索"
+                    android:textColor="@color/exo_white"
                     android:textStyle="bold" />
+
                 <ImageView
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/search"
-                    android:scaleType="centerInside"
                     android:layout_width="20dp"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/search" />
             </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
-    <RelativeLayout
-        android:focusable="false"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/full"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/player_container"
-            android:background="@drawable/button_item_selector"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:nextFocusLeft="@null"
-            android:nextFocusRight="@id/next"
-            android:nextFocusUp="@id/search_bar"
-            android:nextFocusDown="@id/group_provider"
-            android:text="全屏"
-            android:textSize="18dp" />
-        <Button
-            android:nextFocusDown="@id/group_provider"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:id="@+id/next"
-            android:nextFocusRight="@id/change_api"
-            android:text="下一集"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/full"
-            android:background="@drawable/button_item_selector"
-            android:layout_width="100dp"
-            android:layout_height="50dp"/>
-
-        <Button
-            android:id="@+id/change_api"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/next"
-            android:background="@drawable/button_item_selector"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:nextFocusUp="@id/search_bar"
-            android:nextFocusDown="@id/group_provider"
-            android:text=""
-            android:textSize="14dp" />
-
-
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:focusable="false"
-            android:id="@+id/player_container"
-            android:layout_width="0dp"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@id/center_horizontal"
-            android:layout_height="360dp"
-            android:layout_alignParentTop="true"
-            android:orientation="horizontal">
-            <com.kai.video.view.player.TvPlayer
-                android:focusable="false"
-                android:id="@+id/player"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-        <View
-            android:id="@+id/center_horizontal"
-            android:layout_centerHorizontal="true"
-            android:focusable="false"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_below="@id/full"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@id/center_horizontal"
-            android:background="@drawable/info_card_shadow"
-            android:focusable="false"
-            android:orientation="vertical">
 
-            <ImageView
-
-                android:id="@+id/poster"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp" />
-
-            <TextView
-                android:id="@+id/period"
+            <LinearLayout
+                android:id="@+id/player_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/poster"
+                android:layout_height="280dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:focusable="false"
-                android:maxLines="1" />
+                android:orientation="horizontal">
+                <com.kai.video.view.player.TvPlayer
+                    android:id="@+id/player"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_height="match_parent"
+                    android:focusable="false">
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/period"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                android:layout_toEndOf="@+id/poster"
-                android:ellipsize="end"
-                android:focusable="false"
-                android:lines="6"
-                android:text=""
-                android:textSize="12dp" />
+                </com.kai.video.view.player.TvPlayer>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:id="@+id/function"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/download_card_shadow"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
+
+                        <Button
+                            android:id="@+id/full"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_toLeftOf="@id/next"
+                            android:background="@drawable/button_item_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:nextFocusRight="@id/change_api"
+                            android:nextFocusUp="@id/search_bar"
+                            android:text="全屏"
+                            android:textSize="18dp" />
+
+                        <Button
+                            android:id="@+id/next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/button_item_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:text="下一集" />
+
+                        <Button
+                            android:layout_marginEnd="5dp"
+                            android:id="@+id/change_api"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_toRightOf="@id/next"
+                            android:background="@drawable/button_item_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:nextFocusUp="@id/search_bar"
+                            android:text="奈菲"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/download_card_shadow"
+                        android:focusable="false"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/poster"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp" />
+
+                        <TextView
+                            android:id="@+id/period"
+                            android:textSize="13sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="3dp"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_toEndOf="@+id/poster"
+                            android:focusable="false"
+                            android:maxLines="1" />
+
+                        <TextView
+                            android:id="@+id/description"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/period"
+                            android:layout_marginTop="5dp"
+                            android:layout_toEndOf="@+id/poster"
+                            android:ellipsize="end"
+                            android:focusable="false"
+                            android:lines="10"
+                            android:text=""
+                            android:textSize="11sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_below="@id/player_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/center_veritical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:focusable="false" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/group_provider"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/center_veritical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/download_card_shadow"
+                    android:paddingTop="2dp"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/selection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/group_provider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusLeft="@id/full"
+                    android:nextFocusRight="@id/full" />
+            </RelativeLayout>
+
         </RelativeLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/player_container"
-            android:visibility="gone"
-            android:id="@+id/group_provider"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="#8AB8B6B6"
-            android:paddingTop="2dp" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:focusable="false"
-            android:nextFocusLeft="@id/full"
-            android:nextFocusRight="@id/full"
-            android:nextFocusUp="@id/full"
-            android:layout_below="@+id/group_provider"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="5dp"
-            android:id="@+id/selection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

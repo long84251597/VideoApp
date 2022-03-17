@@ -76,12 +76,12 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_marginTop="5dp"
                 android:id="@+id/function"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/player_container"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/download_card_shadow"
                 android:paddingTop="5dp"
